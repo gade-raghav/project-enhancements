@@ -1,0 +1,21 @@
+{% extends 'base/main.html'%}
+{% block title %}New project - Enhancements{% endblock %}
+{% load static %}
+{% block content%}
+{% load crispy_forms_tags%}
+
+
+
+<main class="container-lg px-3 pb-4">
+    <h1 class="border-bottom h1 my-3 my-lg-4">Add new project</h1>
+        <form action="" autocomplete="off" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    
+  </main>
+
+
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+  {% block title %}Enhancements{% endblock %}
+
+
+  {% block content%}
+
+    
+
+
+    <main class="container-lg px-3 pb-4">
+
+
+      <div class="col-12 clearfix mt-2">
+        <div class="d-flex float-right">
+          <div class="Box border-green mr-1"><b class="p-1">beta</b></div>
+          <a class="link-gray float-right" href="#" target="blank">Give feedback</a>
+        </div>
+      </div>
+    
+      <div id="project-list">
+        <div class="Box Box--spacious f4 mt-2">
+          <div class="Box-header pb-0">
+            <h3 class="Box-title flex-auto mb-4">
+                My projects
+                <a href="/tickets/welcome" aria-label="help" title="help"> <svg class="octicon octicon-question float-right" height="24" viewBox="0 0 24 24" version="1.1" width="24" aria-hidden="true"><path d="M10.97 8.265a1.45 1.45 0 00-.487.57.75.75 0 01-1.341-.67c.2-.402.513-.826.997-1.148C10.627 6.69 11.244 6.5 12 6.5c.658 0 1.369.195 1.934.619a2.45 2.45 0 011.004 2.006c0 1.033-.513 1.72-1.027 2.215-.19.183-.399.358-.579.508l-.147.123a4.329 4.329 0 00-.435.409v1.37a.75.75 0 11-1.5 0v-1.473c0-.237.067-.504.247-.736.22-.28.486-.517.718-.714l.183-.153.001-.001c.172-.143.324-.27.47-.412.368-.355.569-.676.569-1.136a.953.953 0 00-.404-.806C12.766 8.118 12.384 8 12 8c-.494 0-.814.121-1.03.265zM13 17a1 1 0 11-2 0 1 1 0 012 0z"></path><path fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zM2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0z"></path></svg> </a>
+            </h3>
+            <nav class="UnderlineNav">
+              <div class="UnderlineNav-body">
+                <a class="UnderlineNav-item" href="#"  aria-current=&quot;page&quot;>Projects</a>
+              </div>
+              <div class="UnderlineNav-actions">
+                <form id="tickets-refresh" class="d-inline"  >
+                  <input type="submit" onclick="window.location.reload();" value="Refresh" class="btn btn-sm mr-2" />
+                </form>            
+                <a class="btn btn-sm btn-primary mb-2 mt-2"  href="{% url 'newproject' %}">New project</a>
+              </div>
+            </nav>
+          </div>
+
+          <ul>
+
+            {% for project in projects  %}
+            <li class="Box-row Box-row--hover-gray p-0 mt-0">
+                <div class="ml-2 p-2 col-12">
+                  <span class="tooltipped tooltipped-e float-left" aria-label="Closed ticket">
+                    <span class="v-align-middle">
+                      <svg class="octicon octicon-issue-closed closed" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 0110.65-5.003.75.75 0 00.959-1.153 8 8 0 102.592 8.33.75.75 0 10-1.444-.407A6.5 6.5 0 011.5 8zM8 12a1 1 0 100-2 1 1 0 000 2zm0-8a.75.75 0 01.75.75v3.5a.75.75 0 11-1.5 0v-3.5A.75.75 0 018 4zm4.78 4.28l3-3a.75.75 0 00-1.06-1.06l-2.47 2.47-.97-.97a.749.749 0 10-1.06 1.06l1.5 1.5a.75.75 0 001.06 0z"></path></svg>
+                    </span>
+                  </span>
+                  <div class="col-12 clearfix">
+                    <div class="col-6 pl-2 min-width-0 float-left">
+                      <a class="link-gray-dark no-underline v-align-middle h4" href="">{{project.project_title}}</a>
+                    </div>
+              
+                    <div class="col-2 offset-1 comment-reply px-2 float-right text-right">
+                    </div>
+                  </div>
+              
+                  <div class="col-12 clearfix">
+                    <div class="col-6 pl-2 text-small text-gray float-left">
+                      #{{project.project_id}} <b> {{project.project_status}} </b>
+                      created <relative-time datetime="2020-08-25T06:16:01Z" class="no-wrap">{{project.date_created}}</relative-time>
+                    </div>
+                    <!--
+                    <div class="col-4 offset-1 text-small text-gray float-left">
+                      updated <relative-time datetime="2020-08-25T06:31:06" class="no-wrap"></relative-time>
+                    </div>
+                    -->
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+      
+      </ul>
+    
+            
+    
+    
+      </div>
+    </main>
+
+
+      
+{% endblock %}
