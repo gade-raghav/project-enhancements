@@ -4,6 +4,10 @@ from . import views
 urlpatterns = [
     #--DEMO url
     path('', views.home, name="home"),
+    
+    #--Signin/Signout url
+    path('signin', views.signin,name="signin"),
+    path('signout', views.signout,name="signout"),
 
     #--Project based urls
     path('newproject', views.newproject, name="newproject"),

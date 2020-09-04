@@ -13,7 +13,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     
-
+<style>
+        #messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 10px;
+		}
+		#msg{
+			position: fixed;
+            top: 10px;
+            right: 100px;
+            z-index: 1;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+		}
+</style>
   </head>
   <body>
 
@@ -28,9 +42,10 @@
           </a>
           </div>
           <div id="header-buttons" class="d-flex flex-items-end">
-                <form id="github-signout" action="/session/logout" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" />
-                  <input type="submit" name="commit" value="Sign out" class="btn btn-outline" data-ga-click="Header, sign out" data-disable-with="Sign out" />
+                <form id="github-signout" >
+                  <b><a href="{% url 'signout'%}">Sign out</a></b>
                 </form>       
+
           </div>
         </header>
       </div>
