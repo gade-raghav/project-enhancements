@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.forms import forms
 from django.db import models
 from hashid_field import HashidAutoField
 
@@ -47,5 +48,30 @@ class Progress(models.Model):
 
     def __str__(self):
         return str(self.tracking)
+
+class Feedback(models.Model):
+    CHOICE1=(
+        ('Extremely useful','Extremely useful'),
+        ('Somewhat useful','Somewhat useful'),
+        ('Not useful','Not useful'),
+
+    )
+    CHOICE2=(
+        ('New feature suggestion','New feature suggestion'),
+        ('General comments','General comments'),
+        ('Bug / Something does not work as expected','Bug / Something does not work as expected'),
+        ('Other (please specify)','Other (please specify)')
+    )
+    CHOICE3=(
+        ('yes','yes'),
+        ('no','no')
+    )
+    choice1 = models.CharField(max_length=100,null=False,choices=CHOICE1,default=None,blank=False)
+    choice2 = models.CharField(max_length=100,null=False,choices=CHOICE2,default=None,blank=False)
+    other = models.CharField(max_length=100,blank=True)
+    feedback = models.TextField(max_length=5000,null=False)
+    email = models.EmailField(max_length=50)
+    choice3 = models.CharField(max_length=4,choices=CHOICE3,default=None,blank=False)
+    date_created = models.DateTimeField(auto_now_add=True)
     
     

@@ -11,7 +11,7 @@ def home(request):
         'projects' : projects,
         'progress' : progress
     }
-    return render(request,'base/home.html',context)
+    return render(request,'base/projects.html',context)
 
 #--PROJECT--#
 #--new project form 
@@ -29,3 +29,19 @@ def newproject(request):
     }
 
     return render(request,'base/newproject.html', context) 
+
+def welcome(request):
+    return render(request,'base/welcome.html')
+
+def feedback(request):
+    form = FeedbackForm
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    
+    context = {
+        'form':form
+    }
+    return render(request, 'base/feedback.html', context)

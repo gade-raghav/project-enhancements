@@ -1,0 +1,42 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<main class="container-xl px-3 pb-4">
+    <div class="d-flex flex-wrap flex-items-center flex-justify-center">
+      <div class="pt-4 d-flex flex-wrap flex-items-center flex-justify-center">
+        <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M28 37c1.003.005.997-.443 1-1 .004-1.458-.004-4.629 0-6-.007-.564-.068-.987-1-1-2.118 0-4 1.79-4 4s1.882 4 4 4zM48 37c-1.003.005-.997-.443-1-1-.004-1.458.004-4.629 0-6 .007-.564.068-.987 1-1 2.118 0 4 1.79 4 4s-1.882 4-4 4z" stroke="#2088FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 51c.798-4.48 4.87-8.082 9.97-8.849.66-.1 1.338-.151 2.028-.151m9.606 4.038c1.27 1.408 2.12 3.102 2.396 4.945M32.002 39.71A8.966 8.966 0 0038 42a8.967 8.967 0 006.02-2.31m-.015-12.394A8.967 8.967 0 0038 25a8.966 8.966 0 00-5.994 2.286" stroke="#79B8FF" stroke-width="2" stroke-linecap="round"/><path d="M38 45c.17 0 .34-.004.509-.01 5.23-.219 9.596-3.785 11.01-8.613m-.004-6.766C48.052 24.634 43.45 21 38 21c-5.485 0-10.11 3.68-11.542 8.706" stroke="#2088FF" stroke-width="2"/><path d="M37.85 44h1.173c.54 0 .977.438.977.977v.523a1.5 1.5 0 01-3 0v-.65c0-.47.38-.85.85-.85z" fill="#2088FF"/><path d="M22 27h-3v4l-6-4H7a2 2 0 01-2-2V7a2 2 0 012-2h33a2 2 0 012 2v10" stroke="#79B8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><g stroke="#2088FF" stroke-linecap="round" stroke-width="2"><path stroke-linejoin="round" d="M17 13l-3 3 3 3M30 13l3 3-3 3"/><path d="M25.03 10.986l-3.015 10.027"/></g></g></svg>
+        <h1 class="px-2">View and keep a track of your ideas to update your project<h1>
+      </div>
+    </div>
+    <div class="pt-2 text-center">
+      <a href="{% url 'home' %}" role="button" class="btn-mktg mt-2 bg-blue" data-ga-click="Intro, my tickets">View My Projects</a>
+    </div>
+  
+    <hr class="p-2">
+    <div class="d-flex flex-wrap">
+      <div class="col-lg-4 col-md-6 col-sm-12 p-4 text-center">
+        <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg"><g transform="translate(5 6)" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M9 27V12c0-1.275.737-2 2.154-2h23.692c1.417 0 2.154.725 2.154 2v15" stroke="#2088FF" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 9V7c0-1.283.685-2 2-2h23c1.315 0 2 .717 2 2v20" stroke="#2088FF" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 4V2c0-1.295-.685-2-2-2H5C3.685 0 3 .705 3 2v25" stroke="#2088FF" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 31c-.11 4.578-4.849 8.21-9 8-4.176.159-8.914-3.422-9-8" stroke="#79B8FF" stroke-linecap="round" stroke-linejoin="round"/><path d="M32.14 31H44a2 2 0 012 2v10a2 2 0 01-2 2H2a2 2 0 01-2-2V33a2 2 0 012-2h11.989" stroke="#79B8FF"/><rect stroke="#79B8FF" x="14" y="17" width="5" height="5" rx=".789"/><path stroke="#79B8FF" stroke-linecap="round" stroke-linejoin="round" d="M24.003 17.006h8M24.003 22.006h4"/></g></svg>
+        <p>View the status of your projects.</p>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 p-4 text-center">
+        <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg"><g stroke-width="2" fill="none" fill-rule="evenodd"><path stroke="#2088FF" stroke-linecap="round" stroke-linejoin="round" d="M24.002 48.011h8M25.002 51.011h6M28 44h3.84c0-2 .214-5.172 1.154-6.957 1.104-2.097 3.098-4.092 3.944-5.035A11.955 11.955 0 0040 24c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 3.067 1.15 5.865 3.043 7.986.843.945 2.833 2.93 3.933 5.021C23.92 38.798 24.14 42 24.14 44H28z"/><path d="M6.7 15c.316 1.122.572 1.372 1.71 1.678-1.136.314-1.39.566-1.7 1.69-.317-1.121-.573-1.372-1.71-1.679 1.135-.313 1.389-.566 1.7-1.689zm42 0c.316 1.122.572 1.372 1.71 1.678-1.136.314-1.39.566-1.7 1.69-.317-1.121-.573-1.372-1.71-1.679 1.135-.313 1.389-.566 1.7-1.689zM27.977 8V5M38.969 10.549l2.028-2.543M15.954 10.021L14 7.576" stroke="#79B8FF" stroke-linecap="round" stroke-linejoin="round"/><g stroke="#79B8FF"><path d="M21 23h3.394m7.03 0H35" stroke-linecap="round"/><path d="M28 26.375a3.375 3.375 0 100-6.75 3.375 3.375 0 000 6.75z"/></g></g></svg>
+        <p>Add your ideas using features option and keep track of their progress.</p>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 p-4 text-center">
+        <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg"><g stroke-linecap="round" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M51 51c-.267-1.727-1.973-3-4-3-2.08 0-3.788 1.318-4 3m4-9a3 3 0 100 6 3 3 0 000-6zm-34 9c-.267-1.727-1.973-3-4-3-2.08 0-3.788 1.318-4 3m4-9a3 3 0 100 6 3 3 0 000-6z" stroke="#2088FF" stroke-linejoin="round"/><path d="M5 39V25a2 2 0 012-2h9M17 51h8v-3h6v3h8M19 14v-2a2 2 0 012-2h14a2 2 0 012 2v2m14 25V25a2 2 0 00-2-2h-9M9 29h3M16 35V16a2 2 0 012-2h20a2 2 0 012 2v19M44 29h3M21 23h14" stroke="#79B8FF" stroke-linejoin="round"/><path stroke="#79B8FF" d="M28 10V5"/><path d="M19.995 43h16V33a1 1 0 00-1-1h-14a1 1 0 00-1 1v10zM17 43.008h22" stroke="#2088FF" stroke-linejoin="round"/><path stroke="#2088FF" stroke-linejoin="round" d="M24.273 36.17l1.337 1.38-1.337 1.383M29.001 39.009h2"/></g></svg>
+        <p>Share your projects and ideas, those who are interested can reach you.</p>
+      </div>
+    </div>
+    <br>
+    <hr class="p-1">
+    <br>
+    <div class="col-12 text-center">
+      <p><i>Enhancements</i> is a <b class=" Box border-green mr-1 p-1">beta</b> release. <a href="{% url 'feedback' %}">Give feedback</a>.</p>
+    </div>
+  </main>
+  
+
+{% endblock %}

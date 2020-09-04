@@ -46,6 +46,27 @@ class ProgressAdmin(admin.ModelAdmin):
         'trackerid',
     ]
 
+
+class FeedbackAdmin(admin.ModelAdmin):
+    fields = [
+        'choice1',
+        'choice2',
+        'other',
+        'choice3',
+        'email',
+        'feedback',
+    ]
+
+    readonly_fields = [
+        'choice1',
+        'choice2',
+        'other',
+        'choice3',
+        'email',
+        'feedback',
+    ]
+
 admin.site.register(Project,ProjectAdmin)
 admin.site.register(Feature,FeatureAdmin)
 admin.site.register(Progress,ProgressAdmin)
+admin.site.register(Feedback,FeedbackAdmin)
