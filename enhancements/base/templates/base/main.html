@@ -41,12 +41,20 @@
               <i>Enhancements</i>
           </a>
           </div>
+          {% if request.user.is_authenticated %}
           <div id="header-buttons" class="d-flex flex-items-end">
                 <form id="github-signout" >
                   <b><a href="{% url 'signout'%}">Sign out</a></b>
                 </form>       
-
           </div>
+          {% else %}
+          <div id="header-buttons" class="d-flex flex-items-end">
+                <form id="github-signout" >
+                  <b><a href="{% url 'signin'%}">Admin-SignIn</a></b>
+                </form>       
+          </div>
+
+          {% endif %}
         </header>
       </div>
       {% block content %}
@@ -59,4 +67,5 @@
         </div>
       </div>
   </body>
+  <script src="/static/mdeditor/languages/en.js"></script>
 </html>

@@ -1,5 +1,8 @@
 from django.contrib import admin
 from .models import *
+
+from mdeditor.widgets import MDEditorWidget
+
 # Register your models here.
 
 class ProjectAdmin(admin.ModelAdmin):
@@ -66,7 +69,16 @@ class FeedbackAdmin(admin.ModelAdmin):
         'feedback',
     ]
 
+
+
+class ExampleModelAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.TextField: {'widget': MDEditorWidget}
+    }
+
+
 admin.site.register(Project,ProjectAdmin)
 admin.site.register(Feature,FeatureAdmin)
 admin.site.register(Progress,ProgressAdmin)
 admin.site.register(Feedback,FeedbackAdmin)
+admin.site.register(ExampleModel,ExampleModelAdmin)

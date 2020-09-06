@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="{% static 'mdeditor/css/editormd.min.css' %}" rel="stylesheet">
+  <link href="{% static 'mdeditor/css/editormd.preview.css' %}" rel="stylesheet">
+  <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+</head>
+    <style>
+        .container-lg{
+            margin-top: 20px;
+        }
+    </style>
+
+<body>
+    
+<div class="container-lg px-3 pb-4"> <div class="Box rounded-top-0">
+  <div class="blankslate">
+      <div class="col-12 clearfix mt-2">
+        <div class="d-flex float-right" style="margin-right: 10px;">
+            <a class="btn btn-sm btn-primary mb-2 mt-2"  href="{% url 'home' %}">Return to projects</a>
+        </div>
+      </div>
+    <p><div id="content"><textarea>{{ project.project_description }}</textarea></div></p>
+  </div>
+</div></div>
+
+
+
+
+  <script src="{% static 'mdeditor/js/jquery.min.js' %}"></script>
+  <script src="{% static 'mdeditor/js/editormd.min.js' %}"></script>
+  <script src="{% static 'mdeditor/js/lib/marked.min.js' %}"></script>
+  <script src="{% static 'mdeditor/js/lib/prettify.min.js' %}"></script>
+  <script src="{% static 'mdeditor/js/lib/raphael.min.js' %}"></script>
+  <script src="{% static 'mdeditor/js/lib/underscore.min.js' %}"></script>
+  <script src="{% static 'mdeditor/js/lib/sequence-diagram.min.js' %}"></script>
+  <script src="{% static 'mdeditor/js/lib/flowchart.min.js' %}"></script>
+  <script src="{% static 'mdeditor/js/lib/jquery.flowchart.min.js' %}"></script>
+<script>
+  $(function () {
+      // js 解析markdown
+      editormd.markdownToHTML("content", {
+          //htmlDecode      : "style,script,iframe",  // you can filter tags decode
+          emoji           : true,
+          taskList        : true,
+          tex             : true,  // 默认不解析
+          flowChart       : true,  // 默认不解析
+          sequenceDiagram : true,  // 默认不解析
+      });
+
+
+      $(".reference-link").each(function (i,obj) {
+        console.log(obj)
+      })
+  })
+
+</script>
+</body>
+</html>

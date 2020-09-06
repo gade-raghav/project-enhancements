@@ -8,9 +8,9 @@ from .models import *
 from .forms import *
 from .decorators import *
 
-#---Home
+
 @login_required(login_url='signin')
-def home(request):
+def projects(request):
     projects = Project.objects.all()
     progress = Progress.objects.all()
     context = {
@@ -47,10 +47,18 @@ def signin(request):
 def signout(request):
     logout(request)
     messages.info(request, 'Logged out.')
-    return redirect('signin')
+    return redirect('welcome')
 
 #--PROJECT--#
 #--new project form 
+def projects(request):
+    projects = Project.objects.all()
+    progress = Progress.objects.all()
+    context = {
+        'projects' : projects,
+        'progress' : progress
+    }
+    return render(request,'base/projects.html',context)
 @login_required(login_url='signin')
 def newproject(request):
     form = ProjectForm()
@@ -67,6 +75,14 @@ def newproject(request):
 
     return render(request,'base/newproject.html', context) 
 
+def aboutproject(request,project_id):
+    project = Project.objects.get(project_id=project_id)
+    context = {
+        'project' : project
+    }
+
+    return render(request,'base/specificproject.html',context)
+
 def welcome(request):
     return render(request,'base/welcome.html')
 
@@ -82,3 +98,32 @@ def feedback(request):
         'form':form
     }
     return render(request, 'base/feedback.html', context)
+
+def projectedit(request,project_id):
+    project = Project.objects.get(project_id=project_id)
+    form = ProjectForm(instance=project)
+
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES, instance=project)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Updated.')
+            return redirect('home')
+
+    context = { 'form' : form}
+
+    return render(request,'base/projectedit.html', context)
+
+def mdeditor(request):
+    form= mdeditorForm()
+    if request.method == 'POST':
+        form = mdeditorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    
+    context = {
+        'form':form
+    }
+
+    return render(request,'base/editor.html',context)

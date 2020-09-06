@@ -12,10 +12,26 @@
     <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <style>
+    #messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 10px;
+		}
+		#msg{
+			position: fixed;
+            top: 10px;
+            right: 100px;
+            z-index: 1;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+		}
+    </style>
+
   </head>
+   {% include 'base/messages.html' %}
   <body style="margin: 155px;">
 
-    {% include 'base/messages.html' %}
        <div class="container">
         <div class="row justify-content-center">
             <div class="column">
