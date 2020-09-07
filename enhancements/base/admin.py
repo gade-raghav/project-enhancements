@@ -13,10 +13,13 @@ class ProjectAdmin(admin.ModelAdmin):
         'github_link',
         'status',
         'date_created',
+        'updated_at',
+        'features',
 
     ]
     readonly_fields= [
         'project_id',
+        'updated_at',
         'date_created',
     ]
 
@@ -28,10 +31,12 @@ class FeatureAdmin(admin.ModelAdmin):
         'feature_description',
         'status',
         'date_created',
+        'updated_at',
 
     ]
     readonly_fields= [
         'date_created',
+        'updated_at',
         'tracking_id',
     ]
 

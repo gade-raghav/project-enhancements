@@ -18,7 +18,9 @@ urlpatterns = [
     path('', views.welcome, name="welcome"),
     path('feedback', views.feedback, name="feedback"),
     url(r'mdeditor/', include('mdeditor.urls')),
-    path('md',views.mdeditor,name="md")
+
+    #--Features based urls
+    path('features', views.features, name="features"),
 
 ]
 if settings.DEBUG:

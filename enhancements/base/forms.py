@@ -12,7 +12,7 @@ from .models import *
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['project_title','project_description','status','github_link']
+        fields = ['project_title','project_description','status','github_link','features']
         widgets ={
 
             'project_title' : TextInput(

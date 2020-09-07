@@ -28,6 +28,8 @@ class Project(models.Model):
     github_link = models.CharField(max_length=200, default='',blank=True,null=True)
     status = models.CharField(max_length=20,null=False,choices=STATUS,default="Working") 
     date_created = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    features = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.project_id)
@@ -44,6 +46,7 @@ class Feature(models.Model):
     feature_name = models.CharField(max_length=50,null=False,default='New Feature')
     feature_description = models.TextField(max_length=500,null=False,default='Feature Description')
     date_created = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=20,null=False,choices=STATUS,default="Queued")
 
     def __str__(self):

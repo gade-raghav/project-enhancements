@@ -8,18 +8,16 @@ from .models import *
 from .forms import *
 from .decorators import *
 
+#--Welcome Page
+def welcome(request):
+    return render(request,'base/welcome.html')
 
-@login_required(login_url='signin')
-def projects(request):
-    projects = Project.objects.all()
-    progress = Progress.objects.all()
-    context = {
-        'projects' : projects,
-        'progress' : progress
-    }
-    return render(request,'base/projects.html',context)
 
-#--Signin/Signout
+
+
+
+#--Signin/Signout--#
+#--Signin
 @unauthenticated_user
 def signin(request):
     form = AuthenticationForm()
@@ -44,13 +42,19 @@ def signin(request):
 
     return render(request,'base/signin.html',context)
 
+
+#--Signout
 def signout(request):
     logout(request)
     messages.info(request, 'Logged out.')
     return redirect('welcome')
 
+
+
+
+
 #--PROJECT--#
-#--new project form 
+#--Projects 
 def projects(request):
     projects = Project.objects.all()
     progress = Progress.objects.all()
@@ -59,6 +63,9 @@ def projects(request):
         'progress' : progress
     }
     return render(request,'base/projects.html',context)
+
+
+#--New project form
 @login_required(login_url='signin')
 def newproject(request):
     form = ProjectForm()
@@ -75,6 +82,8 @@ def newproject(request):
 
     return render(request,'base/newproject.html', context) 
 
+
+#--Particular project
 def aboutproject(request,project_id):
     project = Project.objects.get(project_id=project_id)
     context = {
@@ -83,9 +92,8 @@ def aboutproject(request,project_id):
 
     return render(request,'base/specificproject.html',context)
 
-def welcome(request):
-    return render(request,'base/welcome.html')
 
+#--Feedback form
 def feedback(request):
     form = FeedbackForm
     if request.method == 'POST':
@@ -99,6 +107,8 @@ def feedback(request):
     }
     return render(request, 'base/feedback.html', context)
 
+
+#--Edit Project
 def projectedit(request,project_id):
     project = Project.objects.get(project_id=project_id)
     form = ProjectForm(instance=project)
@@ -114,16 +124,19 @@ def projectedit(request,project_id):
 
     return render(request,'base/projectedit.html', context)
 
-def mdeditor(request):
-    form= mdeditorForm()
-    if request.method == 'POST':
-        form = mdeditorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+
+
+
+
+#--FEATURES--#
+#--Features
+def features(request):
+    projects = Project.objects.all()
+    features = Feature.objects.all()
     
-    context = {
-        'form':form
+    context ={
+        'projects' : projects,
+        'features' : features,
     }
 
-    return render(request,'base/editor.html',context)
+    return render(request,'base/features.html',context)

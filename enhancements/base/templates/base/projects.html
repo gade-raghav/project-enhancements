@@ -1,5 +1,6 @@
 {% extends 'base/main.html' %}
 {% load static %}
+{% load humanize %}
 
   {% block title %}Enhancements{% endblock %}
 
@@ -52,7 +53,10 @@
             </h3>
             <nav class="UnderlineNav">
               <div class="UnderlineNav-body">
-                <a class="UnderlineNav-item" hrsignin?next=/projectsef="#"  aria-current=&quot;page&quot;>Projects</a>
+                <a class="UnderlineNav-item" href="{% url 'home' %}"  aria-current=&quot;page&quot;>Projects</a>
+                &nbsp;
+                &nbsp;
+                <a class="UnderlineNav-item" href="{% url 'features' %}"  aria-current=&quot;page&quot;>Features</a>
               </div>
               <div class="UnderlineNav-actions">
                 {% if request.user.is_authenticated %}
@@ -96,7 +100,7 @@
               
                   <div class="col-12 clearfix">
                     <div class="col-6 pl-2 text-small text-gray float-left">
-                      #{{project.project_id}} <b> {{project.project_status}} </b>
+                      #{{project.project_id}} 
                       created <relative-time datetime="2020-08-25T06:16:01Z" class="no-wrap">{{project.date_created}}</relative-time>
                       {% if project.github_link %}
                       <span class="v-align-right" style="color: black;">
@@ -104,11 +108,9 @@
                       </span>
                       {% endif %}
                     </div>
-                    <!--
                     <div class="col-4 offset-1 text-small text-gray float-left">
-                      updated <relative-time datetime="2020-08-25T06:31:06" class="no-wrap"></relative-time>
+                      updated <relative-time datetime="2020-08-25T06:31:06" class="no-wrap">{{project.updated_at|naturaltime}}</relative-time>
                     </div>
-                    -->
                   </div>
                 </div>
               </li>
