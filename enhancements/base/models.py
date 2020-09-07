@@ -3,6 +3,15 @@ from django.forms import forms
 from django.db import models
 from hashid_field import HashidAutoField
 
+from mdeditor.fields import MDTextField
+
+class ExampleModel(models.Model):
+    name = models.CharField(max_length=100)
+    content = MDTextField()
+
+    def __str__(self):
+        return self.name
+
 # Create your models here.
 
 class Project(models.Model):
@@ -14,7 +23,8 @@ class Project(models.Model):
 
     project_id = HashidAutoField(min_length=8,primary_key=True,alphabet="0123456789abcdefghijklmnopqrstuvwxyz",salt="drop the gun and go to steam bathc")
     project_title = models.CharField(max_length=200,default='New Project')
-    project_description = models.TextField(max_length=2000,default='Project Description')
+    #project_description = models.TextField(max_length=2000,default='Project Description')
+    project_description = MDTextField()
     github_link = models.CharField(max_length=200, default='',blank=True,null=True)
     status = models.CharField(max_length=20,null=False,choices=STATUS,default="Working") 
     date_created = models.DateTimeField(auto_now_add=True)

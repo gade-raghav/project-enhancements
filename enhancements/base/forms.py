@@ -64,3 +64,11 @@ class FeedbackForm(ModelForm):
                 print(e)
             else:
                 return self.cleaned_data
+
+
+
+class mdeditorForm (ModelForm):
+
+    class Meta:
+        model = ExampleModel
+        fields = '__all__'

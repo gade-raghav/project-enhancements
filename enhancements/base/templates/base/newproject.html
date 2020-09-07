@@ -10,6 +10,7 @@
     <h1 class="border-bottom h1 my-3 my-lg-4">Add new project</h1>
         <form action="" autocomplete="off" method="POST">
             {% csrf_token %}
+            {{ form.media}}
             {{ form|crispy }}
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
