@@ -33,7 +33,7 @@ def signin(request):
         if user is not None:
             login(request,user)
             messages.info(request, 'Logged in successfully!')
-            return redirect('welcome')
+            return redirect('home')
         else:
             messages.error(request,'username or password not correct')
             return redirect('signin')
