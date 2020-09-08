@@ -86,7 +86,7 @@ def newproject(request):
         form = ProjectForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('home')
         
 
     context = {
@@ -107,6 +107,7 @@ def aboutproject(request,project_id):
 
 
 #--Edit Project
+@login_required(login_url='signin')
 def projectedit(request,project_id):
     project = Project.objects.get(project_id=project_id)
     form = ProjectForm(instance=project)
@@ -139,9 +140,45 @@ def features(request):
 
     return render(request,'base/features.html',context)
 
+#--About Feature
 def aboutfeature(request,tracking_id):
     feature = Feature.objects.get(tracking_id=tracking_id)
     context = {
         'feature' : feature
     }
     return render(request,'base/specificfeature.html',context)
+
+
+#--New feature form
+@login_required(login_url='signin')
+def newfeature(request):
+    form = FeatureForm()
+    if request.method == 'POST':
+        form = FeatureForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('features')
+        
+
+    context = {
+        'form':form
+    }
+
+    return render(request,'base/newfeature.html', context) 
+
+#--Edit Feature
+@login_required(login_url='signin')
+def featureedit(request,tracking_id):
+    feature = Feature.objects.get(tracking_id=tracking_id)
+    form = FeatureForm(instance=feature)
+
+    if request.method == 'POST':
+        form = FeatureForm(request.POST, request.FILES, instance=feature)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Updated.')
+            return redirect('features')
+
+    context = { 'form' : form}
+
+    return render(request,'base/featureedit.html', context)

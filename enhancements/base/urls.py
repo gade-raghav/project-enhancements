@@ -21,7 +21,9 @@ urlpatterns = [
 
     #--Features based urls
     path('features', views.features, name="features"),
+    path('newfeature', views.newfeature, name="newfeature"),
     path('feature/<str:tracking_id>', views.aboutfeature,name='specificfeature'),
+    path('featureedit/<str:tracking_id>', views.featureedit, name="featureedit"),
 
 ]
 if settings.DEBUG:

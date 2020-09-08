@@ -8,11 +8,15 @@ from .models import *
 
 
 
-#--New project form
+#--Project form
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['project_title','project_description','status','github_link','features']
+        fields = ['project_title','status','features','github_link','project_description']
+        labels = {
+            'features': _('Features (Enable this option to work with features.)'),
+
+        }
         widgets ={
 
             'project_title' : TextInput(
@@ -24,6 +28,26 @@ class ProjectForm(ModelForm):
     
             }
         
+#--Feature form
+class FeatureForm(ModelForm):
+    class Meta:
+        model = Feature
+        fields = ['feature_id','feature_name','status', 'feature_description']
+
+        labels = {
+            'feature_id': _('Project'),
+
+        }
+        widgets ={
+
+            'feature_name' : TextInput(
+                attrs={'placeholder':'Feature name'}),
+
+            'project_description' : Textarea(
+                attrs={'placeholder': 'Add feature description'}
+            )
+    
+            }
 
 #--Feedback form
 class FeedbackForm(ModelForm):
