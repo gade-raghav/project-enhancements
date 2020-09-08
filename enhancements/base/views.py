@@ -13,6 +13,19 @@ def welcome(request):
     return render(request,'base/welcome.html')
 
 
+#--Feedback form
+def feedback(request):
+    form = FeedbackForm
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    
+    context = {
+        'form':form
+    }
+    return render(request, 'base/feedback.html', context)
 
 
 
@@ -93,21 +106,6 @@ def aboutproject(request,project_id):
     return render(request,'base/specificproject.html',context)
 
 
-#--Feedback form
-def feedback(request):
-    form = FeedbackForm
-    if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    
-    context = {
-        'form':form
-    }
-    return render(request, 'base/feedback.html', context)
-
-
 #--Edit Project
 def projectedit(request,project_id):
     project = Project.objects.get(project_id=project_id)
@@ -140,3 +138,10 @@ def features(request):
     }
 
     return render(request,'base/features.html',context)
+
+def aboutfeature(request,tracking_id):
+    feature = Feature.objects.get(tracking_id=tracking_id)
+    context = {
+        'feature' : feature
+    }
+    return render(request,'base/specificfeature.html',context)
