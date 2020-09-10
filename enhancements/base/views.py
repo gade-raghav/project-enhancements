@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponseRedirect
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -143,8 +143,18 @@ def features(request):
 #--About Feature
 def aboutfeature(request,tracking_id):
     feature = Feature.objects.get(tracking_id=tracking_id)
+    progress = Progress.objects.all()
+    form = ProgressForm()
+    if request.method == 'POST':
+        form= ProgressForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(request.path_info)
+
     context = {
-        'feature' : feature
+        'feature' : feature,
+        'form': form,
+        'progress' : progress,
     }
     return render(request,'base/specificfeature.html',context)
 

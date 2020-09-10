@@ -44,9 +44,9 @@ class ProgressAdmin(admin.ModelAdmin):
     fields = [
         'tracking',
         'trackerid',
-        'tracker_title',
         'tracker_description',
         'date_created',
+        'progress_percentage',
 
     ]
     readonly_fields= [
@@ -86,4 +86,3 @@ admin.site.register(Project,ProjectAdmin)
 admin.site.register(Feature,FeatureAdmin)
 admin.site.register(Progress,ProgressAdmin)
 admin.site.register(Feedback,FeedbackAdmin)
-admin.site.register(ExampleModel,ExampleModelAdmin)

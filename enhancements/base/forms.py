@@ -49,6 +49,19 @@ class FeatureForm(ModelForm):
     
             }
 
+#--PROGRESS--#
+#--Progress form
+class ProgressForm(ModelForm):
+    class Meta:
+        model = Progress
+        fields = ['tracking','tracker_description','progress_percentage']
+        
+        labels = {
+            'tracking': _('Feature'),
+            'tracker_description':_('Progress description'),
+            'progress_percentage':_('Progress percentage'),
+        }
+
 #--Feedback form
 class FeedbackForm(ModelForm):
     class Meta:
@@ -90,9 +103,3 @@ class FeedbackForm(ModelForm):
                 return self.cleaned_data
 
 
-
-class mdeditorForm (ModelForm):
-
-    class Meta:
-        model = ExampleModel
-        fields = '__all__'

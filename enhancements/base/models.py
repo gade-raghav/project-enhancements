@@ -1,16 +1,11 @@
 from django.contrib.auth.models import User
 from django.forms import forms
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 from hashid_field import HashidAutoField
 
 from mdeditor.fields import MDTextField
 
-class ExampleModel(models.Model):
-    name = models.CharField(max_length=100)
-    content = MDTextField()
-
-    def __str__(self):
-        return self.name
 
 # Create your models here.
 
@@ -49,14 +44,15 @@ class Feature(models.Model):
     status = models.CharField(max_length=20,null=False,choices=STATUS,default="Queued")
 
     def __str__(self):
-        return '%s-->' '%s' % (str(self.feature_id),str(self.tracking_id))
+        return '%s-->' '%s' % (str(self.feature_id),str(self.feature_name))
 
 class Progress(models.Model):
     tracking = models.ForeignKey(Feature,null=True,on_delete=models.CASCADE)
     trackerid = HashidAutoField(min_length=8,primary_key=True,alphabet="0123456789abcdefghijklmnopqrstuvwxyz",salt="Gamatatsu Niichan are Naruto summons")  
     date_created = models.DateTimeField(auto_now_add=True)
-    tracker_title = models.CharField(max_length=50,null=False,default='Progress')
+    updated_at = models.DateTimeField(auto_now=True)
     tracker_description = models.TextField(max_length=200,null=False,default='Description')
+    progress_percentage= models.IntegerField(default=0,validators=[MinValueValidator(0),MaxValueValidator(100)])
 
     def __str__(self):
         return str(self.tracking)
