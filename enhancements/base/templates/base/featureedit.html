@@ -21,7 +21,7 @@
             {{ form.media}}
             {{ form|crispy }}
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a class="btn btn-sm btn-danger "  href="{% url 'features' %}">Cancel</a>
+            <a class="btn btn-sm btn-danger "  href="{% url 'specificfeature' feature.tracking_id %}">Cancel</a>
         </form>
     
 </main>

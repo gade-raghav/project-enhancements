@@ -189,6 +189,12 @@ def featureedit(request,tracking_id):
             messages.info(request, 'Updated.')
             return redirect('features')
 
-    context = { 'form' : form}
+    context = { 
+
+        'form' : form,
+        'feature': feature
+
+        }
+
 
     return render(request,'base/featureedit.html', context)
