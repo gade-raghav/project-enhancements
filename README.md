@@ -6,7 +6,8 @@ Interested people can contact you to collaborate.
 You can keep all your ideas to enhance your project at a place and monitor their progress.
 
 Various components of this application are clarified in this blog entry.
-**Don't proceed any further without reading the blog entry. Key components have been explained there in order to use this application to the fullest.**
+
+***Don't proceed any further without reading the blog entry. Key components have been explained there in order to use this application to the fullest.***
 
 
 ## Requirements
