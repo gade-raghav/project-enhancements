@@ -12,7 +12,7 @@ from .models import *
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['project_title','status','features','github_link','project_description']
+        fields = ['project_title','language_used','framework_used','containerization_used','database_used','status','features','github_link','project_description']
         labels = {
             'features': _('Features (Enable this option to work with features.)'),
 
@@ -57,7 +57,7 @@ class ProgressForm(ModelForm):
         fields = ['tracking','tracker_description','progress_percentage']
         
         labels = {
-            'tracking': _('Feature'),
+            'tracking': _('Enhancement'),
             'tracker_description':_('Progress description'),
             'progress_percentage':_('Progress percentage'),
         }

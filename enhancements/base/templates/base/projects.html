@@ -68,6 +68,55 @@
                       {% else %}
                       <a class="link-gray-dark no-underline v-align-middle h4" href="{% url 'specificproject' project.project_id %}">{{project.project_title}}</a>
                       {% endif %}
+                      <details class="details-reset details-overlay details-overlay-dark ml-4 pt-2 pb-2">
+                          <summary class="btn btn-sm" aria-haspopup="dialog"> <b>Components</b></summary>
+                          <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast">
+                            <div class="overflow-auto">
+                              <ul>
+
+                                {% if not project.framework_used.all and  not feature.language_used.all and not project.database_used.all and not project.containerization_used.all %}
+                                  <li class="Box-row">
+                                    Add components
+                                  </li>
+                                  {% else %}
+                                <li class="Box-row">
+                                  {% if project.framework_used.all %}
+                                  Framework(s) :&nbsp;
+                                  {% for framework  in project.framework_used.all %}
+                                  <span class="State">{{framework.framework_name}}</span>
+                                {% endfor %}
+                                {% endif %}
+                                </li>
+                                {% if project.language_used.all %}
+                                <li class="Box-row">
+                                  Language(s) :&nbsp;
+                                  {% for language  in project.language_used.all %}
+                                  <span class="State">{{language.language_name}}</span>
+                                {% endfor %}
+                                {% endif %}
+                                </li>
+                                {% if project.database_used.all %}
+                                <li class="Box-row">
+                                  Database(s) :&nbsp;
+                                  {% for database  in project.database_used.all %}
+                                  <span class="State">{{database.database_name}}</span>
+                                {% endfor %}
+                                {% endif %}
+                                </li>
+                                {% if project.containerization_used.all %}
+                                <li class="Box-row">
+                                  Containerization :&nbsp;
+                                  {% for container  in project.containerization_used.all %}
+                                  <span class="State">{{container.container_name}}</span>
+                                {% endfor %}
+                                {% endif %}
+                                {% endif %}
+                                </li>
+                              </ul>
+                            </div>
+                          </details-dialog>
+                      </details>
+<link href="https://unpkg.com/@github/details-dialog-element/dist/index.css" rel="stylesheet" />
                     </div>
               
                     <div class="col-2 offset-1 comment-reply px-2 float-right text-right ">

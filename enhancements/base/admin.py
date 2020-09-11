@@ -9,6 +9,10 @@ class ProjectAdmin(admin.ModelAdmin):
     fields = [
         'project_id',
         'project_title',
+        'language_used',
+        'framework_used',
+        'database_used',
+        'containerization_used',
         'project_description',
         'github_link',
         'status',
@@ -86,3 +90,7 @@ admin.site.register(Project,ProjectAdmin)
 admin.site.register(Feature,FeatureAdmin)
 admin.site.register(Progress,ProgressAdmin)
 admin.site.register(Feedback,FeedbackAdmin)
+admin.site.register(Framework)
+admin.site.register(Database)
+admin.site.register(Containerization)
+admin.site.register(Language)

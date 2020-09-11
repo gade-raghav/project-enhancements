@@ -9,6 +9,34 @@ from mdeditor.fields import MDTextField
 
 # Create your models here.
 
+class Framework(models.Model):
+    framework_name = models.CharField(max_length=40,null=True)
+
+    def __str__(self):
+        return self.framework_name
+
+
+class Language(models.Model):
+    language_name = models.CharField(max_length=40,null=True)
+
+    def __str__(self):
+        return self.language_name
+
+
+class Containerization(models.Model):
+    container_name = models.CharField(max_length=40,null=True)
+
+    def __str__(self):
+        return self.container_name
+
+
+class Database(models.Model):
+    database_name = models.CharField(max_length=40,null=True)
+
+    def __str__(self):
+        return self.database_name
+
+
 class Project(models.Model):
     STATUS = (
         ('Queued','Queued'),
@@ -18,7 +46,10 @@ class Project(models.Model):
 
     project_id = HashidAutoField(min_length=8,primary_key=True,alphabet="0123456789abcdefghijklmnopqrstuvwxyz",salt="drop the gun and go to steam bathc")
     project_title = models.CharField(max_length=200,default='New Project')
-    #project_description = models.TextField(max_length=2000,default='Project Description')
+    framework_used = models.ManyToManyField(Framework)
+    language_used = models.ManyToManyField(Language)
+    containerization_used = models.ManyToManyField(Containerization,blank=True)
+    database_used = models.ManyToManyField(Database)
     project_description = MDTextField()
     github_link = models.CharField(max_length=200, default='',blank=True,null=True)
     status = models.CharField(max_length=20,null=False,choices=STATUS,default="Working") 
@@ -56,6 +87,8 @@ class Progress(models.Model):
 
     def __str__(self):
         return str(self.tracking)
+
+
 
 class Feedback(models.Model):
     CHOICE1=(

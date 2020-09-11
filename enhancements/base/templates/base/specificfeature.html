@@ -60,7 +60,6 @@
         </details>
         {% endif %}
         <br>
-        {% if request.user.is_authenticated %}
     {% for pro in progress %}
     {% if pro.tracking.tracking_id == feature.tracking_id %}
     <div class="TimelineItem TimelineItem--condensed">
@@ -85,7 +84,6 @@
     </div>
     {% endif %}
     {% endfor %}
-    {% endif %}
     <br>
 </div>
 </div>
