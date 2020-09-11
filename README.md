@@ -12,7 +12,7 @@ Various components of this application are clarified in this blog entry.
 
 * [python-3.6](https://www.python.org/downloads/release/python-3611/)
 * [django](https://www.djangoproject.com/)
-* [docker](https://docs.docker.com/get-docker/)
+
 
 # Usage
 
