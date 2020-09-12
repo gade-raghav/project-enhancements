@@ -46,10 +46,10 @@ class Project(models.Model):
 
     project_id = HashidAutoField(min_length=8,primary_key=True,alphabet="0123456789abcdefghijklmnopqrstuvwxyz",salt="drop the gun and go to steam bathc")
     project_title = models.CharField(max_length=200,default='New Project')
-    framework_used = models.ManyToManyField(Framework)
-    language_used = models.ManyToManyField(Language)
+    framework_used = models.ManyToManyField(Framework,blank=True)
+    language_used = models.ManyToManyField(Language,blank=True)
     containerization_used = models.ManyToManyField(Containerization,blank=True)
-    database_used = models.ManyToManyField(Database)
+    database_used = models.ManyToManyField(Database,blank=True)
     project_description = MDTextField()
     github_link = models.CharField(max_length=200, default='',blank=True,null=True)
     status = models.CharField(max_length=20,null=False,choices=STATUS,default="Working") 
@@ -114,5 +114,14 @@ class Feedback(models.Model):
     email = models.EmailField(max_length=50)
     choice3 = models.CharField(max_length=4,choices=CHOICE3,default=None,blank=False)
     date_created = models.DateTimeField(auto_now_add=True)
-    
-    
+
+
+class Aboutme(models.Model):
+    email = models.CharField(max_length=200,default='',editable="false")
+    name = models.CharField(max_length=100,null=True)
+    igname = models.CharField(max_length=100,null=True,blank=True)
+    githubid = models.CharField(max_length=100,null=True,blank=True)
+    aboutme = MDTextField(null=True) 
+
+    def __str__(self):
+        return self.email

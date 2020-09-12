@@ -198,3 +198,33 @@ def featureedit(request,tracking_id):
 
 
     return render(request,'base/featureedit.html', context)
+
+def aboutme(request):
+
+    profile = Aboutme.objects.get(id=1)        
+
+    context = {
+        'profile' : profile
+    }
+
+    return render(request,'base/profile.html', context)
+
+def aboutmeedit(request,):
+    profile = Aboutme.objects.get(id=1)
+    form = AboutmeForm(instance=profile)
+
+    if request.method == 'POST':
+        form = AboutmeForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Updated.')
+            return redirect('aboutme')
+
+    context = { 
+
+        'form' : form,
+
+        }
+
+
+    return render(request,'base/profileedit.html', context)

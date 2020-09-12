@@ -24,6 +24,10 @@ urlpatterns = [
     path('newfeature', views.newfeature, name="newfeature"),
     path('feature/<str:tracking_id>', views.aboutfeature,name='specificfeature'),
     path('featureedit/<str:tracking_id>', views.featureedit, name="featureedit"),
+    path('aboutme', views.aboutme,name="aboutme"),
+    path('editaboutme', views.aboutmeedit, name="editaboutme")
+    
+    #--Profile based url
 
 ]
 if settings.DEBUG:

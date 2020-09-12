@@ -41,22 +41,16 @@
               <i>Enhancements</i>
           </a>
           </div>
-          {% if request.user.is_authenticated %}
           <div id="header-buttons" class="d-flex flex-items-end">
-                <a href="#"><img class="avatar mr-4" alt="jonrohan" src="{% static 'images/dude.jpeg' %}"  style="border-radius: 30px;" width="48" height="48" title="Raghav Gade"/></a>
+                <a href="{% url 'aboutme' %}"><img class="avatar mr-4" alt="jonrohan" src="{% static 'images/dude.jpeg' %}"  style="border-radius: 30px;" width="48" height="48" title="Raghav Gade"/></a>
                 <form id="github-signout" >
+                   {% if request.user.is_authenticated %}
                   <b><a href="{% url 'signout'%}">Sign out</a></b>
-                </form>       
-          </div>
-          {% else %}
-          <div id="header-buttons" class="d-flex flex-items-end">
-                <a href="#"><img class="avatar mr-4" alt="jonrohan" src="{% static 'images/dude.jpeg' %}"  style="border-radius: 30px;" width="48" height="48" title="Raghav Gade"/></a>
-                <form id="github-signout" >
+                  {% else %}
                   <b><a href="{% url 'signin'%}">Admin-SignIn</a></b>
+                  {% endif %}
                 </form>       
           </div>
-
-          {% endif %}
         </header>
       </div>
       {% block content %}

@@ -102,4 +102,7 @@ class FeedbackForm(ModelForm):
             else:
                 return self.cleaned_data
 
-
+class AboutmeForm(ModelForm):
+    class Meta:
+        model = Aboutme 
+        fields = '__all__'
