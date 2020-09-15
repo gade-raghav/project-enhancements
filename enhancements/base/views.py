@@ -148,13 +148,17 @@ def aboutfeature(request,tracking_id):
     if request.method == 'POST':
         form= ProgressForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = request.user
+            prog = form.save(commit=False)
+            prog.user = User.objects.get(username=user)
+            prog.save()
             return HttpResponseRedirect(request.path_info)
 
     context = {
         'feature' : feature,
         'form': form,
         'progress' : progress,
+
     }
     return render(request,'base/specificfeature.html',context)
 

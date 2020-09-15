@@ -80,6 +80,7 @@ class Feature(models.Model):
 class Progress(models.Model):
     tracking = models.ForeignKey(Feature,null=True,on_delete=models.CASCADE)
     trackerid = HashidAutoField(min_length=8,primary_key=True,alphabet="0123456789abcdefghijklmnopqrstuvwxyz",salt="Gamatatsu Niichan are Naruto summons")  
+    user = models.ForeignKey(User, null=True,on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tracker_description = models.TextField(max_length=200,null=False,default='Description')
