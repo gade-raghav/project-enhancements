@@ -43,11 +43,12 @@
           </div>
           <div id="header-buttons" class="d-flex flex-items-end">
                 <a href="{% url 'aboutme' %}"><img class="avatar mr-4" alt="jonrohan" src="{% static 'images/dude.jpeg' %}"  style="border-radius: 30px;" width="48" height="48" title="Raghav Gade"/></a>
+                <b><a class="mr-4" href="{% url 'home'%}">Projects</a></b>
                 <form id="github-signout" >
                    {% if request.user.is_authenticated %}
                   <b><a href="{% url 'signout'%}">Sign out</a></b>
                   {% else %}
-                  <b><a href="{% url 'signin'%}">Admin-SignIn</a></b>
+                  <b><a href="{% url 'signin'%}">Sign in</a></b>
                   {% endif %}
                 </form>       
           </div>
