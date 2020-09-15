@@ -54,10 +54,9 @@ class FeatureForm(ModelForm):
 class ProgressForm(ModelForm):
     class Meta:
         model = Progress
-        fields = ['tracking','tracker_description','progress_percentage']
+        fields = ['tracker_description','progress_percentage']
         
         labels = {
-            'tracking': _('Enhancement'),
             'tracker_description':_('Progress description'),
             'progress_percentage':_('Progress percentage'),
         }

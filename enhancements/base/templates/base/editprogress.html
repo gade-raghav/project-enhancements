@@ -21,7 +21,7 @@
             {{ form.media}}
             {{ form|crispy }}
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a class="btn btn-sm btn-danger "  href="{% url 'home' %}">Cancel</a>
+            <a class="btn btn-sm btn-danger "  href="javascript:window.history.back()">Cancel</a>
         </form>
     
 </main>

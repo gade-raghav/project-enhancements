@@ -143,6 +143,7 @@ def features(request):
 #--About Feature
 def aboutfeature(request,tracking_id):
     feature = Feature.objects.get(tracking_id=tracking_id)
+    #--Adding new progress form--
     progress = Progress.objects.all()
     form = ProgressForm()
     if request.method == 'POST':
@@ -151,8 +152,10 @@ def aboutfeature(request,tracking_id):
             user = request.user
             prog = form.save(commit=False)
             prog.user = User.objects.get(username=user)
+            prog.tracking = Feature.objects.get(tracking_id=tracking_id)
             prog.save()
             return HttpResponseRedirect(request.path_info)
+
 
     context = {
         'feature' : feature,
@@ -162,6 +165,23 @@ def aboutfeature(request,tracking_id):
     }
     return render(request,'base/specificfeature.html',context)
 
+#--Progress comments edit
+def editprogress(request,trackerid):
+    progress = Progress.objects.get(trackerid=trackerid)
+    form = ProgressForm(instance=progress)
+
+    if request.method == 'POST':
+        form = ProgressForm(request.POST, request.FILES, instance=progress)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Updated.')
+            return redirect('features')
+
+    context ={
+        'form' : form
+    }
+
+    return render(request,'base/editprogress.html',context)
 
 #--New feature form
 @login_required(login_url='signin')
