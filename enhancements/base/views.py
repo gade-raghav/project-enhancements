@@ -8,6 +8,15 @@ from .models import *
 from .forms import *
 from .decorators import *
 
+
+
+#--Error Pages
+def error_500_view(request):
+    return render(request,'500.html')
+
+def error_404_view(request,exception):
+    return render(request,'404.html')
+
 #--Welcome Page
 def welcome(request):
     return render(request,'base/welcome.html')
