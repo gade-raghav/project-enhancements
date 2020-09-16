@@ -78,13 +78,21 @@ class Feature(models.Model):
         return '%s-->' '%s' % (str(self.feature_id),str(self.feature_name))
 
 class Progress(models.Model):
+
+    types = (
+        ('Suggestion','Suggestion'),
+        ('Task','Task'),
+        ('Update','Update')
+    )
+
     tracking = models.ForeignKey(Feature,null=True,on_delete=models.CASCADE)
     trackerid = HashidAutoField(min_length=8,primary_key=True,alphabet="0123456789abcdefghijklmnopqrstuvwxyz",salt="Gamatatsu Niichan are Naruto summons")  
     user = models.ForeignKey(User, null=True,on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    tracker_description = models.TextField(max_length=200,null=False,default='Description')
-    progress_percentage= models.IntegerField(default=0,validators=[MinValueValidator(0),MaxValueValidator(100)])
+    tracker_description = models.TextField(max_length=200,blank=False)
+    comment_type = models.CharField(max_length=20,null=True,blank=False,choices=types,default="Suggestion")
+    task_completed = models.BooleanField(blank=True)
 
     def __str__(self):
         return str(self.tracking)

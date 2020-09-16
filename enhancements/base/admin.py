@@ -48,9 +48,11 @@ class ProgressAdmin(admin.ModelAdmin):
     fields = [
         'tracking',
         'trackerid',
+        'comment_type',
+        'task_completed',
         'tracker_description',
         'date_created',
-        'progress_percentage',
+        
 
     ]
     readonly_fields= [

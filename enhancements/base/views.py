@@ -156,11 +156,24 @@ def aboutfeature(request,tracking_id):
             prog.save()
             return HttpResponseRedirect(request.path_info)
 
-
+    count=0
+    counter=0
+    for a in progress:
+        if a.tracking.tracking_id == tracking_id:
+            if a.comment_type == "Task":
+                count=count+1
+                if a.task_completed:
+                    counter = counter+1
+    if count != 0:
+        percent = (counter/count)*100
+    else: percent = 0
     context = {
         'feature' : feature,
         'form': form,
         'progress' : progress,
+        'percent' : percent,
+        'counter' : counter,
+        'count' : count,
 
     }
     return render(request,'base/specificfeature.html',context)
