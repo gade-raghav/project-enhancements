@@ -27,4 +27,5 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python ./enhancements/manage.py runserver
+        python ./enhancements/manage.py makemigrations
+        python ./enhancements/manage.py migrate
