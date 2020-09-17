@@ -1,4 +1,4 @@
-# ![GitHub Logo](/enhancements/static/images/log.png) Enhancements
+# ![Logo](/enhancements/static/images/log.png) Enhancements
 
 
 
