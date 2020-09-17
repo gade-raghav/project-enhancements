@@ -1,7 +1,7 @@
 # Enhancements
 
-![GitHub Logo](/images/logo.png)
-Format: ![Alt Text](url)
+![GitHub Logo](/enhancements/static/images/log.png)
+
 
 Enhancements is a django application which helps *student-developers* keep track of their projects. 
 It additionally goes about as portfolio site where in individuals can take a look at your profile.
