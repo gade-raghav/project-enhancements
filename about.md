@@ -19,7 +19,7 @@ One of the best approaches to assemble brand mindfulness, while giving important
 
 The rest of the blog is to make you familiar with the interface of the application. It is an *open source *  project and the code is on [github](https://github.com/gade-raghav/project-enhancements).
 
-## The welcome page:
+## Hello:
 
 
 ![Welcome](/enhancements/static/images/welcome.png)
