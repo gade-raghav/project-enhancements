@@ -19,21 +19,40 @@ One of the best approaches to assemble brand mindfulness, while giving important
 
 The rest of the blog is to make you familiar with the interface of the application. It is an *open source *  project and the code is on [github](https://github.com/gade-raghav/project-enhancements).
 
-**The welcome page**:
+## The welcome page:
+
+
 ![Welcome](/enhancements/static/images/welcome.png)
 
-**Projects**:
+
+********
+
+
+## Projects:
+
+
 ![Projects](/enhancements/static/images/projects.png)
 
 All the projects that you want to keep track of are displayed here. You can add another project, make changes to the content of existing projects, change status of projects (working,queued or completed).
 Components allow you to mark languages,frameworks,databases or containerizations used.
+
+
 ![Components](/enhancements/static/images/components.png)
 
-**Enhancements**:
+
+*********
+
+## Enhancements:
+
+
 ![Enhancements](/enhancements/static/images/enhancements.png)
 
 If you enable the ***Features*** option in your project, you can work with enhancemets. You can add all the new ideas you want to work with on your project.
 Once you've added your feature, you can track it's progress.
+
+
+**********
+
 
 You might be working on a group project where in different people work on different aspects of the projects. In that case, *progress* feature comes in handy. 
 For convenience sake, there are two access modes for this application.
@@ -42,7 +61,13 @@ For convenience sake, there are two access modes for this application.
 
 *Progress feature of a project can only be accessed by users with proper credentials.*
 
-**Progress**: 
+
+**********
+
+
+## Progress: 
+
+
 ![Progress](/enhancements/static/images/progress.png)
 
 You can add progress comments which are of 3 categories:
@@ -50,7 +75,16 @@ You can add progress comments which are of 3 categories:
 - Task (Tasks can be added by users working on project and this generates progress bar. On completion, you can update the task's status. Only the user who has produced the comment can alter it )
 - Update ( Updated regarding the tasks or any other idea )
 
-**Bug Tracker**: *working*
 
-**Blog**: *working*
+
+************
+
+
+**Bug Tracker**: *yet to be added*
+
+
+************
+
+
+**Blog**: *yet to be added*
  
