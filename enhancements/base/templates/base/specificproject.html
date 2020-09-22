@@ -1,29 +1,19 @@
+{% extends 'base/main.html'%}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <link href="{% static 'mdeditor/css/editormd.min.css' %}" rel="stylesheet">
-  <link href="{% static 'mdeditor/css/editormd.preview.css' %}" rel="stylesheet">
-  <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
-</head>
-    <style>
-        .container-lg{
-            margin-top: 20px;
-        }
-    </style>
+{% block title %} Enhancements-specific {% endblock %}
+{% load humanize %}
+{% load crispy_forms_tags%}
 
-<body>
-    
-<div class="container-lg px-3 pb-4"> <div class="Box rounded-top-0">
-  <div class="blankslate">
+{% block content %}
+
+<div class="container-lg px-3 p-4"> <div class="Box rounded-top-0 p-4">
+  <div>
       <div class="col-12 clearfix mt-2">
         <div class="d-flex float-right" style="margin-right: 10px;">
             <a class="btn btn-sm btn-primary mb-2 mt-2"  href="{% url 'home' %}">Return to projects</a>
         </div>
       </div>
-    <p><div id="content"><textarea>{{ project.project_description }}</textarea></div></p>
+    <p><div class="p-4" id="content"><textarea>{{ project.project_description }}</textarea></div></p>
   </div>
 </div></div>
 
@@ -58,5 +48,4 @@
   })
 
 </script>
-</body>
-</html>
+{% endblock %}
