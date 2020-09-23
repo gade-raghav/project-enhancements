@@ -33,7 +33,8 @@ urlpatterns = [
     path('editaboutme', views.aboutmeedit, name="editaboutme"),
 
     #--Blog base url
-    path('blog', views.blog, name="blog"),
+    path('blogs', views.blog, name="blog"),
+    path('blog/<str:id>',views.specificblog, name="sblog"),
 
 ]
 

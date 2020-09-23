@@ -286,3 +286,13 @@ def blog(request):
     }
 
     return render(request,'base/blog.html', context)
+
+def specificblog(request,id):
+
+    blog = Blog.objects.get(id=id)
+
+    context = {
+        'blog' : blog
+    }
+
+    return render(request,'base/specificblog.html', context)
