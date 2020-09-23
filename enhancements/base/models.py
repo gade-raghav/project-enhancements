@@ -134,3 +134,18 @@ class Aboutme(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class Blog(models.Model):
+
+    blog_title = models.CharField(max_length=300,null=True)
+    blog_description = models.TextField(null=True)
+    blog = MDTextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+     
+    def __str__(self):
+        return self.blog_title
+
+    
+    

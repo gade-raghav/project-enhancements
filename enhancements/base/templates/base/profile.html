@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
+{% include 'base/messages.html' %}
 <div class="container p-6">
     <div class="p-8">
     <h1>About   
@@ -51,6 +52,14 @@
         console.log(obj)
       })
   })
+</script>
+<script>
+    setTimeout(function(){
+			if ($('#msg').length > 0) {
+				$('#msg').fadeIn( 400 ).delay( 1500 ).fadeOut( 400 );
+			}
+     });
+
 </script>
 
 {% endblock %}

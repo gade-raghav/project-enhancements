@@ -34,16 +34,19 @@
     <div id="page-header" class="bg-gray-light">
         <header class="container-xl px-3 px-md-6 py-3 position-relative d-flex flex-justify-between width-full">
           <div id="support-logo" class="d-flex flex-items-end">
-            <a href="/" aria-hidden="true">
-              <img id="logo" src="{% static 'images/log.png' %}" alt="">
-            </a>
-            <a href="{% url 'welcome' %}" aria-label="Home" class="h4-mktg text-gray-dark ml-2 no-underline">
-              <i>Enhancements</i>
-          </a>
+            <span class="anim-fade-in">
+              <a href="/" aria-hidden="true">
+                <img id="logo" src="{% static 'images/log.png' %}" alt="">
+              </a>
+              <a href="{% url 'welcome' %}" aria-label="Home" class="h4-mktg text-gray-dark ml-2 no-underline">
+               <i>Enhancements</i>
+              </a>
+            </span>
           </div>
           <div id="header-buttons" class="d-flex flex-items-end">
                 <a href="{% url 'aboutme' %}"><img class="avatar mr-4" alt="jonrohan" src="{% static 'images/dude.jpeg' %}"  style="border-radius: 30px;" width="48" height="48" title="Raghav Gade"/></a>
                 <b><a class="mr-4" href="{% url 'home'%}">Projects</a></b>
+                <b><a class="mr-4" href="{% url 'blog'%}">Blog</a></b>
                 <form id="github-signout" >
                    {% if request.user.is_authenticated %}
                   <b><a href="{% url 'signout'%}">Sign out</a></b>

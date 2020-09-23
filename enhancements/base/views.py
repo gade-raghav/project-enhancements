@@ -256,7 +256,7 @@ def aboutme(request):
     return render(request,'base/profile.html', context)
 
 def aboutmeedit(request,):
-    profile = Aboutme.objects.get(id=1)
+    profile = Aboutme.objects.get(name="Raghav Gade")
     form = AboutmeForm(instance=profile)
 
     if request.method == 'POST':
@@ -274,3 +274,15 @@ def aboutmeedit(request,):
 
 
     return render(request,'base/profileedit.html', context)
+
+
+#--BLOG --#
+
+def blog(request):
+    blogs = Blog.objects.all()
+
+    context = {
+        'blogs' : blogs
+    }
+
+    return render(request,'base/blog.html', context)

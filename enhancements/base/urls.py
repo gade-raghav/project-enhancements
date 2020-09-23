@@ -32,5 +32,8 @@ urlpatterns = [
     path('aboutme', views.aboutme,name="aboutme"),
     path('editaboutme', views.aboutmeedit, name="editaboutme"),
 
+    #--Blog base url
+    path('blog', views.blog, name="blog"),
+
 ]
 

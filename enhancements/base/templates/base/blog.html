@@ -1,0 +1,96 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'images/log.png' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+    <link href="{% static '/css/main.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    
+<style>
+        #messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 10px;
+		}
+		#msg{
+			position: fixed;
+            top: 10px;
+            right: 100px;
+            z-index: 1;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+		}
+</style>
+  </head>
+  <body style="background-color: #061f2f; " >
+
+    <div id="page-header" style="background-color: #0f161e; color: #d3d4d4;" >
+        <header class="container-xl px-3 px-md-6 py-3 position-relative d-flex flex-justify-between width-full">
+          <div id="support-logo" class="d-flex flex-items-end">
+          </div>
+          <div id="header-buttons" class="d-flex flex-items-end">
+                <a href="{% url 'aboutme' %}"><img class="avatar mr-4" alt="jonrohan" src="{% static 'images/dude.jpeg' %}"  style="border-radius: 30px;" width="48" height="48" title="Raghav Gade"/></a>
+                <b><a class="mr-4" href="{% url 'home'%}" style="color: #d3d4d4;">Projects</a></b>
+                <form id="github-signout" >
+                   {% if request.user.is_authenticated %}
+                  <b><a href="{% url 'signout'%}" style="color: #d3d4d4;">Sign out</a></b>
+                  {% else %}
+                  <b><a href="{% url 'signin'%}" style="color: #d3d4d4;">Sign in</a></b>
+                  {% endif %}
+                </form>       
+          </div>
+        </header>
+      </div>
+      <!---->
+      <main class="container-lg px-6 pb-4">
+        <div class="col-12 clearfix mt-2">
+            <div class="d-flex float-right">
+            <div class="Box border-green mr-1"><b class="p-1">beta</b></div>
+            <a class="link-gray float-right" href="{% url 'feedback' %}" style="color:#d3d4d4; text-decoration: none; ">Give feedback</a>
+            </div>
+        </div>
+        <div class=" px-6 mt-8" style="color: #d3d4d4;">
+          {% for blog in blogs %}
+            <div class="TimelineItem">
+                <div class="TimelineItem-badge">
+                    <svg class="octicon octicon-git-commit" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10.86 7c-.45-1.72-2-3-3.86-3-1.86 0-3.41 1.28-3.86 3H0v2h3.14c.45 1.72 2 3 3.86 3 1.86 0 3.41-1.28 3.86-3H14V7h-3.14zM7 10.2c-1.22 0-2.2-.98-2.2-2.2 0-1.22.98-2.2 2.2-2.2 1.22 0 2.2.98 2.2 2.2 0 1.22-.98 2.2-2.2 2.2z"></path>
+                    </svg>
+                </div>
+
+                <div class="TimelineItem-body" style=" margin: auto; background-color: #0f161e; color: white; border-radius: 5px;">
+                        <div class="m-4">
+                            <h2>{{blog.blog_title}}</h2>
+                            <br>
+                            <p style="font-size: 18px;">{{ blog.blog_description }}</p>
+                            <div class="col-4 mb-2 offset-10 text-small text-gray float-left">
+                                <relative-time class="no-wrap"></relative-time>{{blog.date_created|naturaltime}}</relative-time>
+                            </div>
+                        
+                        </div>
+                    
+                </div>
+            </div>
+
+
+          {% endfor %}
+      </div>
+      </main>
+      <!---->
+      <div id="page-footer" class="d-flex flex-items-center" style="color: #d3d4d4;" >
+        <div class="container-xl f6 mt-3">
+          <ul class="list-style-none d-flex text-gray">
+            <li><a class="link-gray" href="https://gade-raghav.github.io" target="blank">Raghav Gade</a></li>
+          </ul>
+        </div>
+      </div>
+  </body>
+  <script src="/static/mdeditor/languages/en.js"></script>
+</html>
