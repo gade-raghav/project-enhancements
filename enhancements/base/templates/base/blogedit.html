@@ -1,10 +1,11 @@
 {% load static %}
 {% load humanize %}
+{% load crispy_forms_tags%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Enhancements-BLOG</title>
+    <title>Enhancements-BLOG*</title>
     <link rel="shortcut icon" href="{% static 'images/offlog3.png' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -63,8 +64,17 @@
             </div>
             <br>
             <div class="m-4" >
-            <h1 class="pt-4 pb-4">{{blog.blog_title}}</h1>
-            <div class="pb-4" style="color: rgb(255, 255, 255);" id="content"><textarea>{{ blog.blog }}</textarea></div>
+            <h1 class="pt-4 ">Edit</h1>
+            <hr>
+            <div class="pb-4 pt-2" style="color: rgb(255, 255, 255);" id="content">
+                <form action="" autocomplete="off" method="POST" >
+                    {% csrf_token %}
+                    {{ form.media}}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-sm btn-danger "  href="{% url 'blog' %}">Cancel</a>
+                </form>
+            </div>
             </div>
         </div>
     </main>
@@ -84,32 +94,5 @@
     </div>
     <br>
   </body>
-  <script src="{% static 'mdeditor/js/jquery.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/editormd.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/marked.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/prettify.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/raphael.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/underscore.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/sequence-diagram.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/flowchart.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/jquery.flowchart.min.js' %}"></script>
-  <script>
-  $(function () {
-      // js 解析markdown
-      editormd.markdownToHTML("content", {
-          //htmlDecode      : "style,script,iframe",  // you can filter tags decode
-          emoji           : true,
-          taskList        : true,
-          tex             : true,  // 默认不解析
-          flowChart       : true,  // 默认不解析
-          sequenceDiagram : true,  // 默认不解析
-      });
-
-
-      $(".reference-link").each(function (i,obj) {
-        console.log(obj)
-      })
-  })
-</script>
   <script src="/static/mdeditor/languages/en.js"></script>
 </html>

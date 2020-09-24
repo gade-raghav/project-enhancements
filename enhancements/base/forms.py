@@ -106,3 +106,8 @@ class AboutmeForm(ModelForm):
     class Meta:
         model = Aboutme 
         fields = '__all__'
+
+class BlogForm(ModelForm):
+    class Meta:
+        model = Blog
+        fields = ['blog_title','blog_description','blog']

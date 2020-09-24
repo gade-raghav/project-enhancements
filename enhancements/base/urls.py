@@ -35,6 +35,7 @@ urlpatterns = [
     #--Blog base url
     path('blogs', views.blog, name="blog"),
     path('blog/<str:id>',views.specificblog, name="sblog"),
+    path('blogedit/<str:id>', views.blogedit, name="blogedit"),
 
 ]
 

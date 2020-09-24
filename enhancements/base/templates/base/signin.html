@@ -38,7 +38,7 @@
                 <div class="col-md-3">
                     <div class="card border-secondary" style="width: 18rem;">
                         <div class="card-body">
-                            <p class="card-text" style="text-align: center;"><b>Sign in</b></p>
+                            <p class="card-text" style="text-align: center;"><img style="width: 40px;" src="{%static 'images/offlog3.png'%}" alt=""><br><br><b>Sign in</b></p>
                             <form method="POST">
                                 {% csrf_token %}
                                 {{form|crispy}}

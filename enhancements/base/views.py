@@ -296,3 +296,24 @@ def specificblog(request,id):
     }
 
     return render(request,'base/specificblog.html', context)
+
+def blogedit(request,id):
+    blog = Blog.objects.get(id=id)
+    form = BlogForm(instance=blog)
+
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES, instance=blog)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Updated.')
+            return redirect('blog')
+
+    context = { 
+
+        'form' : form,
+        'blog' : blog,
+
+    }
+
+    return render(request,'base/blogedit.html', context)
+
