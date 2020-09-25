@@ -149,5 +149,15 @@ class Blog(models.Model):
     class Meta:
         ordering = ['-date_created']
 
+class BlogComments(models.Model):
+
+    tracking = models.ForeignKey(Blog,null=True,on_delete=models.CASCADE)
+    email = models.EmailField(blank=False)
+    comment = models.TextField(null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
+
     
     

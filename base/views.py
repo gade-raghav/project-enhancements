@@ -281,9 +281,11 @@ def aboutmeedit(request,):
 
 def blog(request):
     blogs = Blog.objects.all()
+    comments = BlogComments.objects.all()
 
     context = {
-        'blogs' : blogs
+        'blogs' : blogs,
+        'comments' : comments
     }
 
     return render(request,'base/blog.html', context)
