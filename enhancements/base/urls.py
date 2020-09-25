@@ -34,8 +34,11 @@ urlpatterns = [
 
     #--Blog base url
     path('blogs', views.blog, name="blog"),
+    path('newblog', views.newblog, name="newblog"),
     path('blog/<str:id>',views.specificblog, name="sblog"),
-    path('blogedit/<str:id>', views.blogedit, name="blogedit"),
+    path('blog/<str:id>/edit', views.blogedit, name="blogedit"),
+    path('blog/<int:id>/delete',views.deleteblog, name="blogdelete"),
+    
 
 ]
 

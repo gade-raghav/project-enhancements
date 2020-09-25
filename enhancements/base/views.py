@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.generic import DeleteView
 from .models import *   
 from .forms import *
 from .decorators import *
@@ -247,7 +248,7 @@ def featureedit(request,tracking_id):
 
 def aboutme(request):
 
-    profile = Aboutme.objects.get(id=1)        
+    profile = Aboutme.objects.get(id=3)
 
     context = {
         'profile' : profile
@@ -297,6 +298,21 @@ def specificblog(request,id):
 
     return render(request,'base/specificblog.html', context)
 
+def newblog(request):
+    form = BlogForm()
+    if request.method == 'POST':
+        form = BlogForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blog')
+        
+
+    context = {
+        'form':form
+    }
+
+    return render(request,'base/newblog.html', context) 
+
 def blogedit(request,id):
     blog = Blog.objects.get(id=id)
     form = BlogForm(instance=blog)
@@ -317,3 +333,12 @@ def blogedit(request,id):
 
     return render(request,'base/blogedit.html', context)
 
+def deleteblog(request,id):
+    blog = Blog.objects.get(id=id)
+
+    if request.method=="POST":
+        blog.delete()
+        messages.success(request, 'Blog successfully deleted')
+        return redirect('blog')
+
+    return render(request, 'base/deleteblog.html')
