@@ -1,0 +1,37 @@
+{% extends 'base/main.html'%}
+{% block title %}Enhancements-edit{% endblock %}
+{% load static %}
+{% block content%}
+{% load crispy_forms_tags%}
+<style>
+    #msg{
+        position: fixed;
+        top: 10px;
+        right: 100px;
+        z-index: 1;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+</style>
+{% include 'base/messages.html' %}
+
+<main class="container-lg px-3 pb-4">
+    <h1 class="border-bottom h1 my-3 my-lg-4">Edit</h1>
+        <form action="" autocomplete="off" method="POST">
+            {% csrf_token %}
+            {{ form.media}}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a class="btn btn-sm btn-danger "  href="{% url 'specificfeature' feature.tracking_id %}">Cancel</a>
+        </form>
+    
+</main>
+<script>
+    setTimeout(function(){
+			if ($('#msg').length > 0) {
+				$('#msg').fadeIn( 400 ).delay( 1500 ).fadeOut( 400 );
+			}
+        });
+</script>
+
+
+{% endblock%}
