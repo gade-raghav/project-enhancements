@@ -1,4 +1,4 @@
-# ![Logo](/enhancements/static/images/log.png) Enhancements
+# ![Logo](/enhancements/static/images/offlog3.png) Enhancements
 
 
 
