@@ -128,7 +128,6 @@ class Feedback(models.Model):
 class Aboutme(models.Model):
     email = models.CharField(max_length=200,default='',editable="false")
     name = models.CharField(max_length=100,null=True)
-    igname = models.CharField(max_length=100,null=True,blank=True)
     githubid = models.CharField(max_length=100,null=True,blank=True)
     aboutme = MDTextField(null=True) 
 
