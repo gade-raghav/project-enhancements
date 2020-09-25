@@ -8,7 +8,7 @@ It additionally goes about as portfolio site where in individuals can take a loo
 Interested people can contact you to collaborate.
 You can keep all your ideas to enhance your project at a place and monitor their progress.
 
-Various components of this application are clarified in this blog entry. --> [Enhancements](https://gade-raghav.github.io/aboutme)
+Various components of this application are clarified in this blog entry. --> [Blog post about enhancements](https://enhancements.herokuapp.com/blog/2)
 
 ***Don't proceed any further without reading the blog entry. Key components have been explained there in order to use this application to the fullest.***
 
