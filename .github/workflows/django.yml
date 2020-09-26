@@ -9,12 +9,8 @@ on:
         - dep
         
   pull_request:
-    branches: 
-        - master
+    branches: []
         
-        # Deployment branch
-        - dep
-
 jobs:
   build:
 
