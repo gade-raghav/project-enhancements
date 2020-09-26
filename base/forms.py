@@ -51,12 +51,12 @@ class ProjectForm(ModelForm):
 class FeatureForm(ModelForm):
     class Meta:
         model = Feature
-        fields = ['feature_id','feature_name','status', 'feature_description']
+        fields = ['feature_name','status', 'feature_description']
 
-        labels = {
-            'feature_id': _('Project'),
+#        labels = {
+#            'feature_id': _('Project'),
 
-        }
+#        }
         widgets ={
 
             'feature_name' : TextInput(

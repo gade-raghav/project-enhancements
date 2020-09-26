@@ -208,12 +208,14 @@ def editprogress(request,trackerid):
 
 #--New feature form
 @login_required(login_url='signin')
-def newfeature(request):
+def newfeature(request,project_id):
     form = FeatureForm()
     if request.method == 'POST':
         form = FeatureForm(request.POST)
         if form.is_valid():
-            form.save()
+            p = form.save(commit=False)
+            p.feature_id = Project.objects.get(project_id = project_id)
+            p.save()
             return redirect('features')
         
 

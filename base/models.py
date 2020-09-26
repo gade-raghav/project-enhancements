@@ -45,7 +45,7 @@ class Project(models.Model):
     )
 
     project_id = HashidAutoField(min_length=8,primary_key=True,alphabet="0123456789abcdefghijklmnopqrstuvwxyz",salt="drop the gun and go to steam bathc")
-    project_title = models.CharField(max_length=200,default='New Project')
+    project_title = models.CharField(max_length=200,blank=False)
     framework_used = models.ManyToManyField(Framework,blank=True)
     language_used = models.ManyToManyField(Language,blank=True)
     containerization_used = models.ManyToManyField(Containerization,blank=True)
@@ -60,6 +60,9 @@ class Project(models.Model):
     def __str__(self):
         return str(self.project_title)
 
+    class Meta:
+        ordering = ['-updated_at']
+
 class Feature(models.Model):
     STATUS = (
         ('Working','Working'),
@@ -68,7 +71,7 @@ class Feature(models.Model):
     )
     feature_id = models.ForeignKey(Project,null=False,on_delete=models.CASCADE)
     tracking_id = HashidAutoField(min_length=8,primary_key=True,alphabet="0123456789abcdefghijklmnopqrstuvwxyz",salt="Sakura says but she doesn't mean it bolte") 
-    feature_name = models.CharField(max_length=50,null=False,default='New Feature')
+    feature_name = models.CharField(max_length=50,null=False,blank=False)
     feature_description = MDTextField()
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -76,6 +79,9 @@ class Feature(models.Model):
 
     def __str__(self):
         return '%s-->' '%s' % (str(self.feature_id),str(self.feature_name))
+    
+    class Meta:
+        ordering = ['-updated_at']
 
 class Progress(models.Model):
 
