@@ -20,7 +20,7 @@
         </div>
       </div>
     
-      <div id="project-list" >
+      <div id="project-list">
         <div class="Box Box--spacious f4 mt-2">
           <div class="Box-header pb-0">
             <h3 class="Box-title flex-auto mb-4">
@@ -49,7 +49,7 @@
 
             {% for project in projects  %}
             <li class="Box-row Box-row--hover-gray p-0 mt-0">
-                <div class=" p-2 col-12" style="background-color: #061f2f; color: #d3d4d4;">
+                <div class="ml-2 p-2 col-12">
                   <span class="tooltipped tooltipped-e float-left" aria-label="Closed ticket">
                     <span class="v-align-middle">
                       {% if project.status == "Working" %}
@@ -61,12 +61,12 @@
                       {% endif %}
                     </span>
                   </span>
-                  <div class="col-12 clearfix" style="color: #d3d4d4;">
+                  <div class="col-12 clearfix">
                     <div class="col-6 pl-2 min-width-0 float-left"> 
                       {% if request.user.is_authenticated %}
-                      <a style="color: #d3d4d4;" class="v-align-middle h4" href="{% url 'projectedit' project.project_id %}">{{project.project_title}}</a> &nbsp; <a href="{% url 'specificproject' project.project_id%}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.679 7.932c.412-.621 1.242-1.75 2.366-2.717C5.175 4.242 6.527 3.5 8 3.5c1.473 0 2.824.742 3.955 1.715 1.124.967 1.954 2.096 2.366 2.717a.119.119 0 010 .136c-.412.621-1.242 1.75-2.366 2.717C10.825 11.758 9.473 12.5 8 12.5c-1.473 0-2.824-.742-3.955-1.715C2.92 9.818 2.09 8.69 1.679 8.068a.119.119 0 010-.136zM8 2c-1.981 0-3.67.992-4.933 2.078C1.797 5.169.88 6.423.43 7.1a1.619 1.619 0 000 1.798c.45.678 1.367 1.932 2.637 3.024C4.329 13.008 6.019 14 8 14c1.981 0 3.67-.992 4.933-2.078 1.27-1.091 2.187-2.345 2.637-3.023a1.619 1.619 0 000-1.798c-.45-.678-1.367-1.932-2.637-3.023C11.671 2.992 9.981 2 8 2zm0 8a2 2 0 100-4 2 2 0 000 4z"></path></svg></a>
+                      <a class="link-gray-dark no-underline v-align-middle h4" href="{% url 'projectedit' project.project_id %}">{{project.project_title}}</a> &nbsp; <a href="{% url 'specificproject' project.project_id%}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.679 7.932c.412-.621 1.242-1.75 2.366-2.717C5.175 4.242 6.527 3.5 8 3.5c1.473 0 2.824.742 3.955 1.715 1.124.967 1.954 2.096 2.366 2.717a.119.119 0 010 .136c-.412.621-1.242 1.75-2.366 2.717C10.825 11.758 9.473 12.5 8 12.5c-1.473 0-2.824-.742-3.955-1.715C2.92 9.818 2.09 8.69 1.679 8.068a.119.119 0 010-.136zM8 2c-1.981 0-3.67.992-4.933 2.078C1.797 5.169.88 6.423.43 7.1a1.619 1.619 0 000 1.798c.45.678 1.367 1.932 2.637 3.024C4.329 13.008 6.019 14 8 14c1.981 0 3.67-.992 4.933-2.078 1.27-1.091 2.187-2.345 2.637-3.023a1.619 1.619 0 000-1.798c-.45-.678-1.367-1.932-2.637-3.023C11.671 2.992 9.981 2 8 2zm0 8a2 2 0 100-4 2 2 0 000 4z"></path></svg></a>
                       {% else %}
-                      <a style="color: #d3d4d4;" class=" v-align-middle h4" href="{% url 'specificproject' project.project_id %}">{{project.project_title}}</a>
+                      <a class="link-gray-dark no-underline v-align-middle h4" href="{% url 'specificproject' project.project_id %}">{{project.project_title}}</a>
                       {% endif %}
                       <details class="details-reset details-overlay details-overlay-dark ml-4 pt-2 pb-2">
                           <summary class="btn btn-sm" aria-haspopup="dialog"> <b>Components</b></summary>
@@ -81,7 +81,7 @@
                                   {% else %}
                                 <li class="Box-row">
                                   {% if project.framework_used.all %}
-                                  <i style="color: black;">Framework(s)</i> :&nbsp;
+                                  Framework(s) :&nbsp;
                                   {% for framework  in project.framework_used.all %}
                                   <span class="State">{{framework.framework_name}}</span>
                                 {% endfor %}
@@ -89,7 +89,7 @@
                                 </li>
                                 {% if project.language_used.all %}
                                 <li class="Box-row">
-                                  <i style="color: black;">Language(s)</i> :&nbsp;
+                                  Language(s) :&nbsp;
                                   {% for language  in project.language_used.all %}
                                   <span class="State">{{language.language_name}}</span>
                                 {% endfor %}
@@ -97,7 +97,7 @@
                                 </li>
                                 {% if project.database_used.all %}
                                 <li class="Box-row">
-                                  <i style="color: black;">Database(s)</i> :&nbsp;
+                                  Database(s) :&nbsp;
                                   {% for database  in project.database_used.all %}
                                   <span class="State">{{database.database_name}}</span>
                                 {% endfor %}
@@ -105,7 +105,7 @@
                                 </li>
                                 {% if project.containerization_used.all %}
                                 <li class="Box-row">
-                                  <i style="color: black;">Containerization</i> :&nbsp;
+                                  Containerization :&nbsp;
                                   {% for container  in project.containerization_used.all %}
                                   <span class="State">{{container.container_name}}</span>
                                 {% endfor %}
@@ -123,8 +123,8 @@
                     </div>
                   </div>
               
-                  <div class="col-12 clearfix" style="color: #d3d4d4;">
-                    <div class="col-6 pl-2 text-small float-left" style="color:#d3d4d4 ;">
+                  <div class="col-12 clearfix">
+                    <div class="col-6 pl-2 text-small text-gray float-left">
                       #{{project.project_id}} 
                       created <relative-time datetime="2020-08-25T06:16:01Z" class="no-wrap">{{project.date_created}}</relative-time>
                       {% if project.github_link %}
@@ -133,7 +133,7 @@
                       </span>
                       {% endif %}
                     </div>
-                    <div class="col-4 offset-1 text-small float-left" style="color: #d3d4d4;">
+                    <div class="col-4 offset-1 text-small text-gray float-left">
                       updated <relative-time datetime="2020-08-25T06:31:06" class="no-wrap">{{project.updated_at|naturaltime}}</relative-time>
                     </div>
                   </div>
