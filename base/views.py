@@ -283,6 +283,7 @@ def blog(request):
     blogs = Blog.objects.all()
     comments = BlogComments.objects.all()
 
+    
     context = {
         'blogs' : blogs,
         'comments' : comments
@@ -294,8 +295,19 @@ def specificblog(request,id):
 
     blog = Blog.objects.get(id=id)
 
+    form = CommentForm()
+    if request.method == 'POST':
+        form= CommentForm(request.POST)
+        if form.is_valid():
+            com = form.save(commit=False)
+            com.tracking = Blog.objects.get(id=id)
+            com.save()
+            return HttpResponseRedirect(request.path_info)
+
     context = {
-        'blog' : blog
+        'blog' : blog,
+        'form' : form
+
     }
 
     return render(request,'base/specificblog.html', context)

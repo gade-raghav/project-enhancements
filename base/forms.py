@@ -8,6 +8,25 @@ from .models import *
 
 
 
+#--Comment form
+class CommentForm(ModelForm):
+    class Meta:
+        model = BlogComments
+        fields = ['email','comment']
+        labels = {
+            'email': _('Email-ID'),
+
+        }
+
+        widgets ={
+
+            'comment' : Textarea(
+                attrs={'placeholder': 'Something on your mind?'}
+            )
+    
+            }
+        
+
 #--Project form
 class ProjectForm(ModelForm):
     class Meta:
