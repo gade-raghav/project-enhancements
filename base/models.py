@@ -100,6 +100,7 @@ class Progress(models.Model):
     tracker_description = models.TextField(max_length=200,blank=False)
     comment_type = models.CharField(max_length=20,null=True,blank=False,choices=types,default="Suggestion")
     task_completed = models.BooleanField(blank=True)
+    converted = models .BooleanField(blank=True,default=False)
 
     def __str__(self):
         return str(self.tracking)

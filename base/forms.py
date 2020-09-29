@@ -74,12 +74,13 @@ class FeatureForm(ModelForm):
 class ProgressForm(ModelForm):
     class Meta:
         model = Progress
-        fields = ['comment_type','task_completed','tracker_description']
+        fields = ['comment_type','task_completed','converted','tracker_description']
         
         labels = {
             'tracker_description':_('Progress description'),
             'comment_type':_('Type'),
             'task_completed':_('Completed Task'),
+            'converted':_('Converted(If a suggestion is converted to an update)')
         }
 
 #--Feedback form
