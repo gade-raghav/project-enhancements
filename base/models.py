@@ -104,6 +104,9 @@ class Progress(models.Model):
 
     def __str__(self):
         return str(self.tracking)
+    
+    class Meta:
+        ordering = ['-updated_at']
 
 
 

@@ -436,7 +436,6 @@ def editticket(request,tracking_id):
 
 
 #--ADMIN-BUGS-PANEL 
-@login_required(login_url='signin')
 def bughome(request):
 
     return render(request,'base/bug.html')
