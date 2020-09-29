@@ -49,6 +49,7 @@
                 <a href="{% url 'aboutme' %}"><img class="avatar mr-4" alt="jonrohan" src="{% static 'images/dude.jpeg' %}"  style="border-radius: 30px;" width="48" height="48" title="Raghav Gade"/></a>
                 <b><a class="mr-4" href="{% url 'home'%}" style="color: #d3d4d4;">Projects</a></b>
                 <b><a class="mr-4" href="{% url 'blog'%}" style="color: #d3d4d4;">Blog</a></b>
+                <b><a class="mr-4" href="{% url 'bughome'%}" style="color: #d3d4d4;">Bugs</a></b>
                 <form id="github-signout" >
                    {% if request.user.is_authenticated %}
                   <b><a href="{% url 'signout'%}" style="color: #d3d4d4;">Sign out</a></b>

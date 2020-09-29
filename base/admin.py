@@ -9,6 +9,7 @@ class ProjectAdmin(admin.ModelAdmin):
     fields = [
         'project_id',
         'project_title',
+        'hosted',
         'language_used',
         'framework_used',
         'database_used',
@@ -99,3 +100,5 @@ admin.site.register(Language)
 admin.site.register(Aboutme)
 admin.site.register(Blog)
 admin.site.register(BlogComments)
+admin.site.register(Bug)
+admin.site.register(BugComments)

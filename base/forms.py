@@ -31,9 +31,10 @@ class CommentForm(ModelForm):
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['project_title','language_used','framework_used','containerization_used','database_used','status','features','github_link','project_description']
+        fields = ['project_title','hosted','language_used','framework_used','containerization_used','database_used','status','features','github_link','project_description']
         labels = {
             'features': _('Features (Enable this option to work with features.)'),
+            'hosted': _('Hosted (Is this application hosted online?)')
 
         }
         widgets ={
@@ -130,3 +131,35 @@ class BlogForm(ModelForm):
     class Meta:
         model = Blog
         fields = ['blog_title','blog_description','blog']
+
+###--Bug Tracker--###
+class BugForm(ModelForm):
+    class Meta:
+        model = Bug
+        fields = ['project','user_email','subject','bug_severity','bug_description','user_device_information']
+        labels = {
+            'user_email': _('Email'),
+            'project': _('App'),
+
+        }
+
+        widgets ={
+
+            'user_device_information' : Textarea(
+                attrs={'placeholder':'In case it is a bug, please enter your device hardware/software information.\nThis should include:\nOS(OS version)\nSoftware requirements for this application with version'}),
+    
+            }
+
+
+class BugcommentsForm(ModelForm):
+    class Meta:
+        model = BugComments
+        fields = ['comment']
+        labels = {
+            'comment': _('')
+        }
+        widgets = {
+            'comment' : Textarea(
+                attrs={'placeholder': 'Add your comment here'}
+            )
+        }

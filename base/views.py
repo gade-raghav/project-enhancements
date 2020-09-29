@@ -155,17 +155,6 @@ def aboutfeature(request,tracking_id):
     feature = Feature.objects.get(tracking_id=tracking_id)
     #--Adding new progress form--
     progress = Progress.objects.all()
-    form = ProgressForm()
-    if request.method == 'POST':
-        form= ProgressForm(request.POST)
-        if form.is_valid():
-            user = request.user
-            prog = form.save(commit=False)
-            prog.user = User.objects.get(username=user)
-            prog.tracking = Feature.objects.get(tracking_id=tracking_id)
-            prog.save()
-            return HttpResponseRedirect(request.path_info)
-
     count=0
     counter=0
     for a in progress:
@@ -177,6 +166,18 @@ def aboutfeature(request,tracking_id):
     if count != 0:
         percent = (counter/count)*100
     else: percent = 0
+
+    form = ProgressForm()
+    if request.method == 'POST':
+        form= ProgressForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            prog = form.save(commit=False)
+            prog.user = User.objects.get(username=user)
+            prog.tracking = Feature.objects.get(tracking_id=tracking_id)
+            prog.save()
+            return HttpResponseRedirect(request.path_info)
+
     context = {
         'feature' : feature,
         'form': form,
@@ -358,3 +359,84 @@ def deleteblog(request,id):
         return redirect('blog')
 
     return render(request, 'base/deleteblog.html')
+
+#--BUGS--#
+
+def tickets(request):
+
+    tickets = Bug.objects.all()
+
+    context = {
+        'tickets' : tickets
+    }
+
+    return render(request,'base/tickets.html',context)
+
+def newticket(request):
+
+    form = BugForm()
+    if request.method == 'POST':
+        form = BugForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tickets')
+        
+
+    context = {
+        'form':form
+    }
+
+    return render(request,'base/newticketform.html',context)
+
+def specificticket(request,tracking_id):
+
+    ticket = Bug.objects.get(tracking_id=tracking_id)
+    comments = BugComments.objects.all()
+    username = ticket.user_email.split('@')
+    username = username[0]
+
+    form = BugcommentsForm()
+    if request.method == 'POST':
+        form= BugcommentsForm(request.POST)
+        if form.is_valid():
+            com = form.save(commit=False)
+            com.tracking = Bug.objects.get(tracking_id=tracking_id)
+            com.user = request.user
+            com.save()
+            return HttpResponseRedirect(request.path_info)
+
+    context = {
+        'ticket' : ticket,
+        'comments':comments,
+        'form' : form,
+        'username' : username,
+    }
+
+    return render(request,'base/specificticket.html',context)
+
+def editticket(request,tracking_id):
+
+    ticket = Bug.objects.get(tracking_id=tracking_id)
+    form = BugForm(instance=ticket)
+
+    if request.method == 'POST':
+        form = BugForm(request.POST, request.FILES, instance=ticket)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Updated.')
+            return redirect('tickets')
+
+    context = { 
+
+        'form' : form,
+
+    }
+
+    return render(request,'base/editticket.html', context)
+
+
+#--ADMIN-BUGS-PANEL 
+@login_required(login_url='signin')
+def bughome(request):
+
+    return render(request,'base/bug.html')

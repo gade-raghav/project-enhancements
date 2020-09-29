@@ -38,7 +38,15 @@ urlpatterns = [
     path('blog/<str:id>',views.specificblog, name="sblog"),
     path('blog/<str:id>/edit', views.blogedit, name="blogedit"),
     path('blog/<int:id>/delete',views.deleteblog, name="blogdelete"),
-    
+
+    #--Bugs url 
+    path('tickets', views.tickets, name="tickets"),
+    path('newticket', views.newticket, name="newticket"),
+    path('ticket/<str:tracking_id>', views.specificticket, name="ticket"),
+    path('ticket/<str:tracking_id>/edit', views.editticket, name="ticketedit"),
+
+    #--Bugs admin url
+    path('bugs/home',views.bughome,name="bughome"),
 
 ]
 

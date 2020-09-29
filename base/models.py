@@ -56,6 +56,7 @@ class Project(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     features = models.BooleanField(default=False)
+    hosted = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.project_title)
@@ -164,6 +165,49 @@ class BlogComments(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class Bug(models.Model):
+
+    CHOICE=(
+        ('Low','Low'),
+        ('Minor','Minor'),
+        ('Major','Major'),
+        ('Critical', 'Critical'),
+        ('Not a bug','Not a bug')
+    )
+
+    STATUS=(
+        ('Open','Open'),
+        ('Closed','Closed'),
+        ('Resolved','Resolved')
+    )
+    
+
+    project = models.ForeignKey(Project,blank=False,null=True,on_delete=models.CASCADE)
+    tracking_id = HashidAutoField(min_length=8,primary_key=True,alphabet="0123456789abcdefghijklmnopqrstuvwxyz",salt="Sakura says but she doesn't mean it bolte")
+    ticket_status = models.CharField(max_length=10,choices=STATUS,default="Open")
+    user_email = models.EmailField(blank=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    subject = models.CharField(max_length=200,blank=False)
+    bug_severity = models.CharField(max_length=10,choices=CHOICE,default=None,blank=False)
+    bug_description = MDTextField()
+    user_device_information = models.TextField(max_length=1000,blank=True)
+
+    def __str__(self):
+        return str(self.tracking_id)
+
+class BugComments(models.Model):
+
+    tracking = models.ForeignKey(Bug,null=True,on_delete=models.CASCADE)
+    user = models.CharField(max_length=100,blank=False)
+    comment = models.TextField(null=True,blank=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user
+
 
     
     

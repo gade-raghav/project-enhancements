@@ -27,6 +27,24 @@
     color: red;
   }
 
+  #low{
+    color: yellowgreen
+  }
+
+  #minor{
+    color: yellow
+  }
+
+  #major{
+    color: rgb(255, 145, 0);
+  }
+
+  #critical{
+    color: rgb(190, 8, 8);
+  }
+  #issue{
+    color: purple;
+  }
   svg{
     fill: currentColor;
   }
