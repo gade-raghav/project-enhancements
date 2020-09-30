@@ -1,0 +1,50 @@
+#logo{
+    height: 35px;
+    width: 35px;
+}
+#messages{
+	background-color: grey;
+	color: #fff;
+	padding: 10px;
+	margin-top: 10px;
+}
+#msg{
+    position: fixed;
+    top: 10px;
+    right: 100px;
+    z-index: 1;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+ #completed{
+    color: green;
+  }
+
+  #working{
+    color: orange;
+  }
+
+  #queued{
+    color: red;
+  }
+
+  #low{
+    color: yellowgreen
+  }
+
+  #minor{
+    color: yellow
+  }
+
+  #major{
+    color: rgb(255, 145, 0);
+  }
+
+  #critical{
+    color: rgb(190, 8, 8);
+  }
+  #issue{
+    color: purple;
+  }
+  svg{
+    fill: currentColor;
+  }

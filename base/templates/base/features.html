@@ -1,0 +1,170 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% load humanize %}
+
+  {% block title %}Enhancements{% endblock %}
+
+
+  {% block content%}
+  {{blah}}
+  {{halb}}
+  <style>
+    #msg{
+        position: fixed;
+        top: 10px;
+        right: 100px;
+        z-index: 1;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    </style>
+
+    {% include 'base/messages.html' %}
+
+    <main class="container-lg px-3 pb-4">
+
+
+        <div class="col-12 clearfix mt-2">
+          <div class="d-flex float-right">
+            <div class="Box border-green mr-1"><b class="p-1">beta</b></div>
+            <a class="link-gray float-right" href="{% url 'feedback' %}">Give feedback</a>
+          </div>
+        </div>
+      
+        <div id="feature-list">
+          <div class="Box Box--spacious f4 mt-2">
+            <div class="Box-header pb-0">
+              <h3 class="Box-title flex-auto mb-4">
+                  Enhancements
+                  <a href="{% url 'welcome' %}" aria-label="help" title="help"> <svg class="octicon octicon-question float-right" height="24" viewBox="0 0 24 24" version="1.1" width="24" aria-hidden="true"><path d="M10.97 8.265a1.45 1.45 0 00-.487.57.75.75 0 01-1.341-.67c.2-.402.513-.826.997-1.148C10.627 6.69 11.244 6.5 12 6.5c.658 0 1.369.195 1.934.619a2.45 2.45 0 011.004 2.006c0 1.033-.513 1.72-1.027 2.215-.19.183-.399.358-.579.508l-.147.123a4.329 4.329 0 00-.435.409v1.37a.75.75 0 11-1.5 0v-1.473c0-.237.067-.504.247-.736.22-.28.486-.517.718-.714l.183-.153.001-.001c.172-.143.324-.27.47-.412.368-.355.569-.676.569-1.136a.953.953 0 00-.404-.806C12.766 8.118 12.384 8 12 8c-.494 0-.814.121-1.03.265zM13 17a1 1 0 11-2 0 1 1 0 012 0z"></path><path fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zM2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0z"></path></svg> </a>
+              </h3>
+              <nav class="UnderlineNav">
+                <div class="UnderlineNav-body">
+                  <a class="UnderlineNav-item" href="{% url 'home' %}"  aria-current=&quot;page&quot;>Projects</a>
+                  &nbsp;
+                  &nbsp;
+                  <a class="UnderlineNav-item" href="{% url 'features' %}"  aria-current=&quot;page&quot;>Enhancements</a>
+                  &nbsp;
+                  &nbsp;
+                  <a class="UnderlineNav-item" href="{% url 'tickets' %}" aria-current=&quot;page&quot;>Tickets</a>
+                </div>
+                <div class="UnderlineNav-actions">
+                  {% if request.user.is_authenticated %}
+                  <form id="tickets-refresh" class="d-inline"  >
+                    <input type="submit" onclick="window.location.reload();" value="Refresh" class="btn btn-sm mr-2" />
+                  </form>            
+                  {% endif %}
+                </div>
+              </nav>
+            </div>
+            
+            <ul style=" height: 40%; overflow: hidden; overflow-y: scroll;">
+
+            {% for project in projects  %}
+            {% if project.features is True %}
+            <li class="Box-row Box-row--hover-gray p-0 mt-0">
+                <div class="ml-2 p-2 col-12">
+                  
+
+                  <div class="col-12 clearfix">
+                    <div class="col-6 pl-2 min-width-0 float-left"> 
+                        <div class="d-flex  flex-items-start pl-5">
+                            <button class="btn btn-primary" style="pointer-events: none;">{{ project.project_title }}</button>
+                            <div class="Popover position-relative">
+                                <div class="Popover-message Popover-message--left-top p-4 ml-2 Box box-shadow-large" style="width: max-content;" >
+                                  <b>Enhancements
+                                       <a  class="float-right"  href="{% url 'newfeature' project.project_id %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z"></path></svg></a>
+                                  </b>
+                                    <br>
+                                    {% for feature in features %}
+                                        {% if feature.feature_id.project_id == project.project_id %}
+                                        <h4 class="mb-2 pl-2">
+                                        <hr>
+                                        <ul >
+                                        {% if request.user.is_authenticated %}
+                                        <span class="tooltipped tooltipped-e float-left" >
+                                          <span class="v-align-middle">
+                                            {% if feature.status == "Working" %}
+                                            <svg class="octicon anim-pulse" id="working" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 1.5a6.491 6.491 0 00-5.285 2.715l1.358 1.358A.25.25 0 013.896 6H.25A.25.25 0 010 5.75V2.104a.25.25 0 01.427-.177l1.216 1.216a8 8 0 0114.315 4.03.748.748 0 01-.668.83.75.75 0 01-.824-.676A6.501 6.501 0 008 1.5zM.712 8.004a.75.75 0 01.822.67 6.501 6.501 0 0011.751 3.111l-1.358-1.358a.25.25 0 01.177-.427h3.646a.25.25 0 01.25.25v3.646a.25.25 0 01-.427.177l-1.216-1.216A8 8 0 01.042 8.827a.75.75 0 01.67-.823zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"></path></svg>
+                                            {% elif feature.status == "Completed" %}
+                                            <svg id="completed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
+                                            {% elif feature.status == "Discarded" %}
+                                            <svg id="queued" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"></path></svg>
+                                            {% endif %}
+                                          </span>
+                                        </span>
+                                        &nbsp;
+                                        <a  class="v-align-middle h4" href="{% url 'specificfeature' feature.tracking_id %}">{{feature.feature_name}}</a> 
+                                        {% else %}
+                                            {% if feature.status == "Working" %}
+                                            <svg id="working" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 1.5a6.491 6.491 0 00-5.285 2.715l1.358 1.358A.25.25 0 013.896 6H.25A.25.25 0 010 5.75V2.104a.25.25 0 01.427-.177l1.216 1.216a8 8 0 0114.315 4.03.748.748 0 01-.668.83.75.75 0 01-.824-.676A6.501 6.501 0 008 1.5zM.712 8.004a.75.75 0 01.822.67 6.501 6.501 0 0011.751 3.111l-1.358-1.358a.25.25 0 01.177-.427h3.646a.25.25 0 01.25.25v3.646a.25.25 0 01-.427.177l-1.216-1.216A8 8 0 01.042 8.827a.75.75 0 01.67-.823zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"></path></svg>
+                                            {% elif feature.status == "Completed" %}
+                                            <svg id="completed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
+                                            {% elif feature.status == "Discarded" %}
+                                            <svg id="queued" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"></path></svg>
+                                            {% endif %}
+                                        &nbsp;
+                                         <a class="v-align-middle h4" href="{% url 'specificfeature' feature.tracking_id %}">{{feature.feature_name}}</a>
+                                        {% endif %}
+                                        
+                                            </ul>
+                                        </h4>
+                                        <p style="font-size: small; "> 
+                                        created <relative-time datetime="2020-08-25T06:16:01Z" class="no-wrap">{{feature.date_created}}</relative-time>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        updated <relative-time datetime="2020-08-25T06:31:06" class="no-wrap">{{feature.updated_at|naturaltime}}</relative-time>
+                                        </p>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                      
+              
+                    <div class="col-2 offset-1 comment-reply px-2 float-right text-right ">
+                    </div>
+                  </div>
+              
+                  <div class="col-12 clearfix">
+                    <div class="col-6 pl-2 text-small text-gray float-left">
+                      #{{feature.feature_id}} <b> {{feature.feature_status}} </b>
+                      created <relative-time datetime="2020-08-25T06:16:01Z" class="no-wrap">{{feature.date_created}}</relative-time>
+                    </div>
+                    <!--
+                    <div class="col-4 offset-1 text-small text-gray float-left">
+                      updated <relative-time datetime="2020-08-25T06:31:06" class="no-wrap"></relative-time>
+                    </div>
+                    -->
+                  </div>
+                </div>
+              </li>
+              {% endif %}
+              {% endfor %}
+      
+      </ul>
+          </div>
+          <details class="details-reset mt-3">
+            <summary class="btn-link" style="outline: none;">Help <span class="dropdown-caret"></summary>
+              <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"></path></svg>  &nbsp;->&nbsp;  Discarded
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>  &nbsp;->&nbsp;  Completed
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 1.5a6.491 6.491 0 00-5.285 2.715l1.358 1.358A.25.25 0 013.896 6H.25A.25.25 0 010 5.75V2.104a.25.25 0 01.427-.177l1.216 1.216a8 8 0 0114.315 4.03.748.748 0 01-.668.83.75.75 0 01-.824-.676A6.501 6.501 0 008 1.5zM.712 8.004a.75.75 0 01.822.67 6.501 6.501 0 0011.751 3.111l-1.358-1.358a.25.25 0 01.177-.427h3.646a.25.25 0 01.25.25v3.646a.25.25 0 01-.427.177l-1.216-1.216A8 8 0 01.042 8.827a.75.75 0 01.67-.823zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"></path></svg> &nbsp;->&nbsp;  Working
+          </li>
+          </details>
+          <br>
+    </main>
+    <script>
+    setTimeout(function(){
+			if ($('#msg').length > 0) {
+				$('#msg').fadeIn( 400 ).delay( 1500 ).fadeOut( 400 );
+			}
+     });
+
+    </script>
+
+
+  {% endblock %}

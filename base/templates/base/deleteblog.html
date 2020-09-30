@@ -1,0 +1,100 @@
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Enhancements-BLOG*</title>
+    <link rel="shortcut icon" href="{% static 'images/offlog3.png' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+    <link href="{% static '/css/main.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    
+<style>
+        #messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 10px;
+		}
+		#msg{
+			position: fixed;
+            top: 10px;
+            right: 100px;
+            z-index: 1;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+		}
+</style>
+  </head>
+  <body style="background-color: #061f2f; " >
+
+    <div id="page-header" style="background-color: #0f161e; color: #d3d4d4;" >
+        <header class="container-xl px-3 px-md-6 py-3 position-relative d-flex flex-justify-between width-full">
+          <div id="support-logo" class="d-flex flex-items-end">
+            <span class="anim-fade-in">
+              <a href="/" aria-hidden="true">
+                <img id="logo" src="{% static 'images/offlog3.png' %}" alt="">
+              </a>
+               <i style="color: #d3d4d4; font-size: medium;">Enhancements-</i><b style="color: #d3d4d4;">BLOG</b>
+            </span>
+          </div>
+          <div id="header-buttons" class="d-flex flex-items-end">
+                <a href="{% url 'aboutme' %}"><img class="avatar mr-4" alt="jonrohan" src="{% static 'images/dude.jpeg' %}"  style="border-radius: 30px;" width="48" height="48" title="Raghav Gade"/></a>
+                <b><a class="mr-4" href="{% url 'home'%}" style="color: #d3d4d4;">Projects</a></b>
+                <b><a class="mr-4" href="{% url 'blog'%}" style="color: #d3d4d4;">Blog</a></b>
+                <b><a class="mr-4" href="{% url 'bughome'%}" style="color: #d3d4d4;">Bugs</a></b>
+                <form id="github-signout" >
+                   {% if request.user.is_authenticated %}
+                  <b><a href="{% url 'signout'%}" style="color: #d3d4d4;">Sign out</a></b>
+                  {% else %}
+                  <b><a href="{% url 'signin'%}" style="color: #d3d4d4;">Sign in</a></b>
+                  {% endif %}
+                </form>       
+          </div>
+        </header>
+    </div>
+
+    <main class="container-lg px-6 pb-4">
+        <div class="m-2" style=" margin: auto; background-color: #0f161e; color: white; border-radius: 5px;">
+            <div class=" mb-2 pr-4  text-small text-gray float-right">
+                <a href="{%url 'blog'%}" style="text-decoration: none; color: rgb(255, 255, 255);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34"><path fill-rule="evenodd" d="M10.78 19.03a.75.75 0 01-1.06 0l-6.25-6.25a.75.75 0 010-1.06l6.25-6.25a.75.75 0 111.06 1.06L5.81 11.5h14.44a.75.75 0 010 1.5H5.81l4.97 4.97a.75.75 0 010 1.06z"></path></svg></a>
+            </div>
+            <br>
+            <div class="m-4" >
+            <h1 class="pt-4 ">Delete</h1>
+            <br>
+            <div class="pb-4 pt-2" style="color: rgb(255, 255, 255);" id="content">
+                <form action="" autocomplete="off" method="POST" >
+                    {% csrf_token %}
+                    Are you sure you want to <i><strong>delete</strong></i> this post?
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a class="btn btn btn-primary "  href="{% url 'blog' %}">Cancel</a>
+                </form>
+            </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="page-footer" class="d-flex flex-items-center" style="color: #d3d4d4;" >
+        <div class="container-xl f6 mt-3">
+          <ul class="list-style-none d-flex text-gray">
+            <li><a href="https://www.instagram.com/raghavgade" target="blank"><img style="width: 15px;" src="{% static 'images/igb.png' %}" alt=""></a></li>
+            &nbsp;
+            &nbsp;
+            <li><a style="text-decoration: none; color: black;" target="blank" href="https://github.com/gade-raghav"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a></li> 
+            &nbsp;
+            &nbsp;  
+            <li>Copyright &#169; 2020<a class="link-gray" href="https://gade-raghav.github.io" target="blank">Raghav Gade</a></li>
+          </ul>
+        </div>
+    </div>
+    <br>
+  </body>
+  <script src="/static/mdeditor/languages/en.js"></script>
+</html>

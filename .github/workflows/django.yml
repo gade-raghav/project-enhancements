@@ -2,9 +2,14 @@ name: Django CI
 
 on:
   push:
-    branches: [ master ]
+    branches: 
+        - master
+        
+        # Deployment branch
+        - dep
   pull_request:
-    branches: [ master ]
+    branches: []
+        
 
 jobs:
   build:
@@ -25,4 +30,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    
+
     
