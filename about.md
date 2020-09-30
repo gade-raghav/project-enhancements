@@ -1,4 +1,4 @@
-# ![Logo](/enhancements/static/images/log.png) [Enhancements](https://github.com/gade-raghav/project-enhancements)
+# ![Logo](/static/images/log.png) [Enhancements](https://github.com/gade-raghav/project-enhancements)
 
 Enhancements is a Django application which has been developed to cater to the requirements of inquisitive student developers and assist them in making their task simpler. 
 
@@ -22,7 +22,7 @@ The rest of the blog is to make you familiar with the interface of the applicati
 ## Hello:
 
 
-![Welcome](/enhancements/static/images/welcome.png)
+![Welcome](/static/images/welcome.png)
 
 
 ********
@@ -31,13 +31,13 @@ The rest of the blog is to make you familiar with the interface of the applicati
 ## Projects:
 
 
-![Projects](/enhancements/static/images/projects.png)
+![Projects](/static/images/projects.png)
 
 All the projects that you want to keep track of are displayed here. You can add another project, make changes to the content of existing projects, change status of projects (working,queued or completed).
 Components allow you to mark languages,frameworks,databases or containerizations used.
 
 
-![Components](/enhancements/static/images/components.png)
+![Components](/static/images/components.png)
 
 
 *********
@@ -45,7 +45,7 @@ Components allow you to mark languages,frameworks,databases or containerizations
 ## Enhancements:
 
 
-![Enhancements](/enhancements/static/images/enhancements.png)
+![Enhancements](/static/images/enhancements.png)
 
 If you enable the ***Features*** option in your project, you can work with enhancemets. You can add all the new ideas you want to work with on your project.
 Once you've added your feature, you can track it's progress.
@@ -68,7 +68,7 @@ For convenience sake, there are two access modes for this application.
 ## Progress: 
 
 
-![Progress](/enhancements/static/images/progress.png)
+![Progress](/static/images/progress.png)
 
 You can add progress comments which are of 3 categories:
 - Suggestion ( New Ideas for updates )
