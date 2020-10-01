@@ -1,133 +1,77 @@
+{% extends 'base/main.html'%}
 {% load crispy_forms_tags %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Enhancements-BLOG</title>
-    <link rel="shortcut icon" href="{% static 'images/offlog3.png' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
-    <link href="{% static '/css/main.css' %}" rel="stylesheet" type="text/css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    
-<style>
-        #messages{
-			background-color: grey;
-			color: #fff;
-			padding: 10px;
-			margin-top: 10px;
-		}
-		#msg{
-			position: fixed;
-            top: 10px;
-            right: 100px;
-            z-index: 1;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-		}
-</style>
-  </head>
 
-  <body style="background-color: #061f2f; " >
-    {% include 'base/messages.html' %}
+{% block content %}
+{% include 'base/messages.html' %}
+<main class="container-lg px-3 pb-4">
 
-    <div id="page-header" style="background-color: #0f161e; color: #d3d4d4;" >
-        <header class="container-xl px-3 px-md-6 py-3 position-relative d-flex flex-justify-between width-full">
-            <div id="support-logo" class="d-flex flex-items-end">
-            <span class="anim-fade-in">
-              <a href="/" aria-hidden="true">
-                <img id="logo" src="{% static 'images/offlog3.png' %}" alt="">
-              </a>
-               <i style="color: #d3d4d4; font-size: medium;">Enhancements</i>
-            </span>
-          </div>
-          <div id="support-logo" class="d-flex flex-items-end">
-          </div>
-          <div id="header-buttons" class="d-flex flex-items-end">
-                <a href="{% url 'aboutme' %}"><img class="avatar mr-4" alt="jonrohan" src="{% static 'images/dude.jpeg' %}"  style="border-radius: 30px;" width="48" height="48" title="Raghav Gade"/></a>
-                <b><a class="mr-4" href="{% url 'home'%}" style="color: #d3d4d4;">Projects</a></b>
-                <b><a class="mr-4" href="{% url 'blog'%}" style="color: #d3d4d4;">Blog</a></b>
-                <form id="github-signout" >
-                   {% if request.user.is_authenticated %}
-                  <b><a href="{% url 'signout'%}" style="color: #d3d4d4;">Sign out</a></b>
-                  {% else %}
-                  <b><a href="{% url 'signin'%}" style="color: #d3d4d4;">Sign in</a></b>
-                  {% endif %}
-                </form>       
-          </div>
-        </header>
-      </div>
-      <!---->
-        <div class="container p-6">
-    <div class="p-8" style="background-color:#0f161e; color: #d3d4d4;">
-    <h1>About   
-        {% if request.user.is_authenticated %}
-        <a style="text-decoration: none; color: rgb(245,169, 182)" href="{% url 'editaboutme' %}" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M17.263 2.177a1.75 1.75 0 012.474 0l2.586 2.586a1.75 1.75 0 010 2.474L19.53 10.03l-.012.013L8.69 20.378a1.75 1.75 0 01-.699.409l-5.523 1.68a.75.75 0 01-.935-.935l1.673-5.5a1.75 1.75 0 01.466-.756L14.476 4.963l2.787-2.786zm-2.275 4.371l-10.28 9.813a.25.25 0 00-.067.108l-1.264 4.154 4.177-1.271a.25.25 0 00.1-.059l10.273-9.806-2.94-2.939zM19 8.44l2.263-2.262a.25.25 0 000-.354l-2.586-2.586a.25.25 0 00-.354 0L16.061 5.5 19 8.44z"></path></svg></a>
-        {%  endif %}
-    </h1>
-    <hr>
-    <p><div id="content"><textarea>{{ profile.aboutme }}</textarea></div></p>
-    <h3 class="pt-8">Contact me</h3>
-    <br>
-    <p>Email: <b>{{profile.email}}</b></p>
 
-    {% if profile.githubid %}
-    <a href="https://www.github.com/{{profile.githubid}}" target="blank" style="width: 30px; color: #d3d4d4;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 16" width="45" height="16"><path fill-rule="evenodd" d="M18.53 12.03h-.02c.009 0 .015.01.024.011h.006l-.01-.01zm.004.011c-.093.001-.327.05-.574.05-.78 0-1.05-.36-1.05-.83V8.13h1.59c.09 0 .16-.08.16-.19v-1.7c0-.09-.08-.17-.16-.17h-1.59V3.96c0-.08-.05-.13-.14-.13h-2.16c-.09 0-.14.05-.14.13v2.17s-1.09.27-1.16.28c-.08.02-.13.09-.13.17v1.36c0 .11.08.19.17.19h1.11v3.28c0 2.44 1.7 2.69 2.86 2.69.53 0 1.17-.17 1.27-.22.06-.02.09-.09.09-.16v-1.5a.177.177 0 00-.146-.18zM42.23 9.84c0-1.81-.73-2.05-1.5-1.97-.6.04-1.08.34-1.08.34v3.52s.49.34 1.22.36c1.03.03 1.36-.34 1.36-2.25zm2.43-.16c0 3.43-1.11 4.41-3.05 4.41-1.64 0-2.52-.83-2.52-.83s-.04.46-.09.52c-.03.06-.08.08-.14.08h-1.48c-.1 0-.19-.08-.19-.17l.02-11.11c0-.09.08-.17.17-.17h2.13c.09 0 .17.08.17.17v3.77s.82-.53 2.02-.53l-.01-.02c1.2 0 2.97.45 2.97 3.88zm-8.72-3.61h-2.1c-.11 0-.17.08-.17.19v5.44s-.55.39-1.3.39-.97-.34-.97-1.09V6.25c0-.09-.08-.17-.17-.17h-2.14c-.09 0-.17.08-.17.17v5.11c0 2.2 1.23 2.75 2.92 2.75 1.39 0 2.52-.77 2.52-.77s.05.39.08.45c.02.05.09.09.16.09h1.34c.11 0 .17-.08.17-.17l.02-7.47c0-.09-.08-.17-.19-.17zm-23.7-.01h-2.13c-.09 0-.17.09-.17.2v7.34c0 .2.13.27.3.27h1.92c.2 0 .25-.09.25-.27V6.23c0-.09-.08-.17-.17-.17zm-1.05-3.38c-.77 0-1.38.61-1.38 1.38 0 .77.61 1.38 1.38 1.38.75 0 1.36-.61 1.36-1.38 0-.77-.61-1.38-1.36-1.38zm16.49-.25h-2.11c-.09 0-.17.08-.17.17v4.09h-3.31V2.6c0-.09-.08-.17-.17-.17h-2.13c-.09 0-.17.08-.17.17v11.11c0 .09.09.17.17.17h2.13c.09 0 .17-.08.17-.17V8.96h3.31l-.02 4.75c0 .09.08.17.17.17h2.13c.09 0 .17-.08.17-.17V2.6c0-.09-.08-.17-.17-.17zM8.81 7.35v5.74c0 .04-.01.11-.06.13 0 0-1.25.89-3.31.89-2.49 0-5.44-.78-5.44-5.92S2.58 1.99 5.1 2c2.18 0 3.06.49 3.2.58.04.05.06.09.06.14L7.94 4.5c0 .09-.09.2-.2.17-.36-.11-.9-.33-2.17-.33-1.47 0-3.05.42-3.05 3.73s1.5 3.7 2.58 3.7c.92 0 1.25-.11 1.25-.11v-2.3H4.88c-.11 0-.19-.08-.19-.17V7.35c0-.09.08-.17.19-.17h3.74c.11 0 .19.08.19.17z"></path></svg></a>
-    {% endif %}
-    <hr>
+  <div class="col-12 clearfix mt-2">
+    <div class="d-flex float-right">
+      <div class="Box border-green mr-1"><b class="p-1">beta</b></div>
+      <a class="link-gray float-right" href="{% url 'feedback' %}">Give feedback</a>
     </div>
-</div> 
-      <!---->
-      <div id="page-footer" class="d-flex flex-items-center" style="color: #d3d4d4;" >
-        <div class="container-xl f6 mt-3">
-          <ul class="list-style-none d-flex text-gray">
-            <li><a href="https://www.instagram.com/raghavgade" target="blank"><img style="width: 15px;" src="{% static 'images/igb.png' %}" alt=""></a></li>
-            &nbsp;
-            &nbsp;
-            <li><a style="text-decoration: none; color: black;" target="blank" href="https://github.com/gade-raghav"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a></li> 
-            &nbsp;
-            &nbsp;
-            <li>Copyright &#169; 2020<a class="link-gray" href="https://gade-raghav.github.io" target="blank">Raghav Gade</a></li>
-          </ul>
-        </div>
-      </div>
-      <br>
-  </body>
-  <script>
-    setTimeout(function(){
-			if ($('#msg').length > 0) {
-				$('#msg').fadeIn( 400 ).delay( 1500 ).fadeOut( 400 );
-			}
-        });
+  </div>
+  <div class=" Box col-12 clearfix mt-2">
+
+    <center class="mt-3" >
+    <img id="profile-pic"  src="{% static 'images/dude.jpeg' %}" alt="">    
+    <h2 class="mt-4" style="text-shadow: black;">Raghav Gade <a style=" text-decoration: none;" href="{%url 'editaboutme' %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24" height="24"><path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg></a></h2>
+    <sub style="font-size: medium;">Student Developer|Open-Source guy</sub>
+    </center>
+    <hr>
+
+    <div class="pb-4" id="content"><textarea> {{ profile.aboutme }}</textarea></div>
+     
+    <h3 class="pt-4">Contact me</h3>
+    <br>
+    <p class="pb-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.75 2A1.75 1.75 0 000 3.75v.736a.75.75 0 000 .027v7.737C0 13.216.784 14 1.75 14h12.5A1.75 1.75 0 0016 12.25v-8.5A1.75 1.75 0 0014.25 2H1.75zM14.5 4.07v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88l6.5-3.81zm-13 1.74v6.441c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809z"></path></svg> {{profile.email}}<br>
+      {% if profile.githubid %}
+      <a style="color: black; text-decoration: none;" href="https://github.com/gade-raghav"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 16" width="45" height="16"><path fill-rule="evenodd" d="M18.53 12.03h-.02c.009 0 .015.01.024.011h.006l-.01-.01zm.004.011c-.093.001-.327.05-.574.05-.78 0-1.05-.36-1.05-.83V8.13h1.59c.09 0 .16-.08.16-.19v-1.7c0-.09-.08-.17-.16-.17h-1.59V3.96c0-.08-.05-.13-.14-.13h-2.16c-.09 0-.14.05-.14.13v2.17s-1.09.27-1.16.28c-.08.02-.13.09-.13.17v1.36c0 .11.08.19.17.19h1.11v3.28c0 2.44 1.7 2.69 2.86 2.69.53 0 1.17-.17 1.27-.22.06-.02.09-.09.09-.16v-1.5a.177.177 0 00-.146-.18zM42.23 9.84c0-1.81-.73-2.05-1.5-1.97-.6.04-1.08.34-1.08.34v3.52s.49.34 1.22.36c1.03.03 1.36-.34 1.36-2.25zm2.43-.16c0 3.43-1.11 4.41-3.05 4.41-1.64 0-2.52-.83-2.52-.83s-.04.46-.09.52c-.03.06-.08.08-.14.08h-1.48c-.1 0-.19-.08-.19-.17l.02-11.11c0-.09.08-.17.17-.17h2.13c.09 0 .17.08.17.17v3.77s.82-.53 2.02-.53l-.01-.02c1.2 0 2.97.45 2.97 3.88zm-8.72-3.61h-2.1c-.11 0-.17.08-.17.19v5.44s-.55.39-1.3.39-.97-.34-.97-1.09V6.25c0-.09-.08-.17-.17-.17h-2.14c-.09 0-.17.08-.17.17v5.11c0 2.2 1.23 2.75 2.92 2.75 1.39 0 2.52-.77 2.52-.77s.05.39.08.45c.02.05.09.09.16.09h1.34c.11 0 .17-.08.17-.17l.02-7.47c0-.09-.08-.17-.19-.17zm-23.7-.01h-2.13c-.09 0-.17.09-.17.2v7.34c0 .2.13.27.3.27h1.92c.2 0 .25-.09.25-.27V6.23c0-.09-.08-.17-.17-.17zm-1.05-3.38c-.77 0-1.38.61-1.38 1.38 0 .77.61 1.38 1.38 1.38.75 0 1.36-.61 1.36-1.38 0-.77-.61-1.38-1.36-1.38zm16.49-.25h-2.11c-.09 0-.17.08-.17.17v4.09h-3.31V2.6c0-.09-.08-.17-.17-.17h-2.13c-.09 0-.17.08-.17.17v11.11c0 .09.09.17.17.17h2.13c.09 0 .17-.08.17-.17V8.96h3.31l-.02 4.75c0 .09.08.17.17.17h2.13c.09 0 .17-.08.17-.17V2.6c0-.09-.08-.17-.17-.17zM8.81 7.35v5.74c0 .04-.01.11-.06.13 0 0-1.25.89-3.31.89-2.49 0-5.44-.78-5.44-5.92S2.58 1.99 5.1 2c2.18 0 3.06.49 3.2.58.04.05.06.09.06.14L7.94 4.5c0 .09-.09.2-.2.17-.36-.11-.9-.33-2.17-.33-1.47 0-3.05.42-3.05 3.73s1.5 3.7 2.58 3.7c.92 0 1.25-.11 1.25-.11v-2.3H4.88c-.11 0-.19-.08-.19-.17V7.35c0-.09.08-.17.19-.17h3.74c.11 0 .19.08.19.17z"></path></svg></a>
+      {% endif %}
+    </p>
+  </div>
+
+
+</main>
+
+<script>
+  setTimeout(function(){
+    if ($('#msg').length > 0) {
+      $('#msg').fadeIn( 400 ).delay( 1500 ).fadeOut( 400 );
+    }
+      });
 </script>
 <script src="{% static 'mdeditor/js/jquery.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/editormd.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/marked.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/prettify.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/raphael.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/underscore.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/sequence-diagram.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/flowchart.min.js' %}"></script>
-  <script src="{% static 'mdeditor/js/lib/jquery.flowchart.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/editormd.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/marked.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/prettify.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/raphael.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/underscore.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/sequence-diagram.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/flowchart.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/jquery.flowchart.min.js' %}"></script>
 <script>
-  $(function () {
-      // js 解析markdown
-      editormd.markdownToHTML("content", {
-          //htmlDecode      : "style,script,iframe",  // you can filter tags decode
-          emoji           : true,
-          taskList        : true,
-          tex             : true,  // 默认不解析
-          flowChart       : true,  // 默认不解析
-          sequenceDiagram : true,  // 默认不解析
-      });
+$(function () {
+    // js 解析markdown
+    editormd.markdownToHTML("content", {
+        //htmlDecode      : "style,script,iframe",  // you can filter tags decode
+        emoji           : true,
+        taskList        : true,
+        tex             : true,  // 默认不解析
+        flowChart       : true,  // 默认不解析
+        sequenceDiagram : true,  // 默认不解析
+    });
 
 
-      $(".reference-link").each(function (i,obj) {
-        console.log(obj)
-      })
-  })
+    $(".reference-link").each(function (i,obj) {
+      console.log(obj)
+    })
+})
 </script>
-  <script src="/static/mdeditor/languages/en.js"></script>
-</html>
+
+{% endblock %}
+
+ 
