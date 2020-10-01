@@ -1,4 +1,4 @@
-# ![Logo](/static/images/offlog3.png) Enhancements
+# ![Logo](/static/images/offlog3.png)[Enhancements](https://github.com/gade-raghav/project-enhancements)
 
 Enhancements is a Django application which has been developed to cater to the requirements of inquisitive student developers and assist them in making their task simpler. 
 
