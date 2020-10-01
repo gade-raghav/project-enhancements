@@ -31,13 +31,13 @@ The rest of the blog is to make you familiar with the interface of the applicati
 ## Projects:
 
 
-![Projects](static/images/projects.png)
+![Projects](/static/images/projects.png)
 
 All the projects that you want to keep track of are displayed here. You can add another project, make changes to the content of existing projects, change status of projects (working,queued or completed).
 Components allow you to mark languages,frameworks,databases or containerizations used.
 
 
-![Components](static/images/components.png)
+![Components](/static/images/components.png)
 
 
 *********
