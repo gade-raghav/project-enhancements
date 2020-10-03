@@ -251,7 +251,7 @@ def featureedit(request,tracking_id):
 
 def aboutme(request):
 
-    profile = Aboutme.objects.get(id=1)
+    profile = Aboutme.objects.all()
 
     context = {
         'profile' : profile
