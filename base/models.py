@@ -52,6 +52,7 @@ class Project(models.Model):
     database_used = models.ManyToManyField(Database,blank=True)
     project_description = MDTextField()
     github_link = models.CharField(max_length=200, default='',blank=True,null=True)
+    dockerhub_link = models.CharField(max_length=200, blank=True)
     status = models.CharField(max_length=20,null=False,choices=STATUS,default="Working") 
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -140,6 +141,7 @@ class Aboutme(models.Model):
     email = models.CharField(max_length=200,default='',editable="false")
     name = models.CharField(max_length=100,null=True)
     githubid = models.CharField(max_length=100,null=True,blank=True)
+    dockerhubid = models.CharField(max_length=100,blank=True)
     aboutme = MDTextField(null=True) 
 
     def __str__(self):
