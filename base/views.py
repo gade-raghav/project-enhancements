@@ -260,7 +260,7 @@ def aboutme(request):
     return render(request,'base/profile.html', context)
 
 def aboutmeedit(request,):
-    profile = Aboutme.objects.get(name="Raghav Gade")
+    profile = Aboutme.objects.get(id=1)
     form = AboutmeForm(instance=profile)
 
     if request.method == 'POST':

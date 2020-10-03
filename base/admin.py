@@ -16,6 +16,7 @@ class ProjectAdmin(admin.ModelAdmin):
         'containerization_used',
         'project_description',
         'github_link',
+        'dockerhub_link',
         'status',
         'date_created',
         'updated_at',
