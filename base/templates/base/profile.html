@@ -6,7 +6,7 @@
 {% block content %}
 {% include 'base/messages.html' %}
 <main class="container-lg px-3 pb-4">
-
+{% for profile in profile %}
 
   <div class="col-12 clearfix mt-2">
     <div class="d-flex float-right">
@@ -42,6 +42,7 @@
 
 
 </main>
+{% endfor %}
 
 <script>
   setTimeout(function(){
