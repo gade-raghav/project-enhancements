@@ -152,6 +152,11 @@ class BugForm(ModelForm):
             }
 
 
+class BugStatusForm(ModelForm):
+    class Meta:
+        model = Bug 
+        fields = ['ticket_status']
+
 class BugcommentsForm(ModelForm):
     class Meta:
         model = BugComments
