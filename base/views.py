@@ -404,12 +404,21 @@ def specificticket(request,tracking_id):
             com.user = request.user
             com.save()
             return HttpResponseRedirect(request.path_info)
-
+        
+    form2 = BugStatusForm()
+    
+    if request.method == 'POST':
+        form2 = BugStatusForm(request.POST, request.FILES, instance=ticket)
+        if form2.is_valid():
+            form2.save()
+            return HttpResponseRedirect(request.path_info)
+    
     context = {
         'ticket' : ticket,
         'comments':comments,
         'form' : form,
         'username' : username,
+        'form2' : form2,
     }
 
     return render(request,'base/specificticket.html',context)

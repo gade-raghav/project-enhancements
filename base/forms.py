@@ -31,7 +31,7 @@ class CommentForm(ModelForm):
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['project_title','hosted','language_used','framework_used','containerization_used','database_used','status','features','github_link','project_description']
+        fields = ['project_title','hosted','language_used','framework_used','containerization_used','database_used','status','features','github_link','dockerhub_link','project_description']
         labels = {
             'features': _('Features (Enable this option to work with features.)'),
             'hosted': _('Hosted (Is this application hosted online?)')
@@ -151,6 +151,11 @@ class BugForm(ModelForm):
     
             }
 
+
+class BugStatusForm(ModelForm):
+    class Meta:
+        model = Bug 
+        fields = ['ticket_status']
 
 class BugcommentsForm(ModelForm):
     class Meta:
