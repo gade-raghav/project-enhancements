@@ -3,8 +3,8 @@
     width: 35px;
 }
 #profile-pic{
-  width: 160px;
-  height: 160px ;
+  width: 200px;
+  height: 200px ;
   border-radius: 60%;
   margin-left: auto;
   margin-right: auto;
@@ -25,7 +25,15 @@
  #completed{
     color: green;
   }
-
+#dg{
+  color: #3eb336;
+}
+#ow{
+  color: orange;
+}
+#rw{
+  color: red;
+}
   #working{
     color: orange;
   }
@@ -36,6 +44,10 @@
 
   #low{
     color: yellowgreen
+  }
+
+  #blue{
+    color: #0366d6
   }
 
   #minor{
