@@ -48,5 +48,7 @@ urlpatterns = [
     #--Bugs admin url
     path('bugs/home',views.bughome,name="bughome"),
 
+
+
 ]
 

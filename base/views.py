@@ -446,5 +446,11 @@ def editticket(request,tracking_id):
 
 #--ADMIN-BUGS-PANEL 
 def bughome(request):
+    projects = Project.objects.all()
+    bugs = Bug.objects.all()
 
-    return render(request,'base/bug.html')
+    context = {
+        'projects' : projects,
+        'bugs' : bugs,
+    }
+    return render(request,'base/bug.html',context)

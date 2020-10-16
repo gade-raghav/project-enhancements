@@ -10,6 +10,7 @@ class ProjectAdmin(admin.ModelAdmin):
         'project_id',
         'project_title',
         'hosted',
+        'project_bugs',
         'language_used',
         'framework_used',
         'database_used',
