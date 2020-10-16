@@ -22,9 +22,9 @@
 
                 </div>
             </div>
-            <h1 class="" style="font-weight: normal;">{{ ticket.subject }} #{{ticket.tracking_id}} </h1>
+            <h1 class="" style="font-weight: normal;">{{ ticket.subject }} #{{ticket.tracking_id}}</h1>
             <details class="details-reset details-overlay details-overlay-dark">
-              <summary >
+              <summary  style="outline:none; border:0;">
                 {% if ticket.ticket_status == "Open"%}
                 <span class="State" style="width:100px; background-color: yellowgreen;">{{ticket.ticket_status}}</span>
                 {% elif ticket.ticket_status == "Closed"%}
@@ -32,14 +32,15 @@
                 {% elif ticket.ticket_status == "Resolved"%}
                 <span class="State" style="width:100px; background-color: #3ebe63;">{{ticket.ticket_status}}</span>
                 {% endif %}
+
+                <text style="color: gray; display: inline-block;"> <strong>{{username}}</strong> opened this ticket on {{ticket.date_created}}</text>
               </summary> 
               <details-dialog style="display: inline-block;" class="Box Box--overlay d-flex flex-column anim-fade-in fast">
                 <div class="Box-header">
-                  <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
-                    <!-- <%= octicon "x" %> -->
+                  <button style="border:0; outline:0;" class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
                     <a href="{%url 'ticket' ticket.tracking_id%}" ><svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg></a>
                   </button>
-                  <h3 class="Box-title">Change Status</h3>
+                  <h3 class="Box-title">Change Bug-Details</h3>
                 </div>
                 <div class="overflow-auto">
                   <div class="Box-body overflow-auto">
@@ -54,13 +55,23 @@
                 </div>
               </details-dialog>
             </details>
+
+            <details class="details-reset mt-3">
+              <summary class="btn-link" style="outline: none;">Bug Description <span class="dropdown-caret"></summary>
+                Subject : {{ticket.subject}}
+                <br>
+                Severity: {{ticket.bug_severity}}
+                <br>
+                {% if ticket.user_device_information != 'None' %}
+                User device information : {{ticket.user_device_information}}
+                {% endif %}
+            </details>
             
-              <text style="color: gray; display: inline-block;"> <strong>{{username}}</strong> opened this ticket on {{ticket.date_created}}</text>
             <hr>
             <div class="pl-8 pr-4 pb-8 pt-4">
                 <div class="TimelineItem" >
                 <div class="TimelineItem-badge" >
-                    <strong>I</strong>
+                    <strong>D</strong>
                   </div>
                 <div class="timeline-comment-group TimelineItem-body my-0">
                   <div class="ml-n3 timeline-comment comment timeline-comment--caret">
@@ -79,7 +90,7 @@
                       </div>
             
                     </div>
-                    <div class="Box ml-4" style="border-radius: 0;">
+                    <div class="Box ml-4" style="border-radius: 0;border-width: 1.9px; border-color: black;">
                         <p><div class="pl-3" id="content"><textarea>{{ ticket.bug_description}}</textarea></div></p>
                     </div>
                   </div>
@@ -129,7 +140,7 @@
               {% endif %}
               <br>
               {% if ticket.ticket_status == "Resolved" %}
-              <b>Issue Resolved. Open new ticket for other queries.</b>
+              <b>Issue Resolved. Contact admin to reopen the ticket <br>Email: gaderaghav5@gmail.com</b>
               {% else %}
               <div style="width: 400px; ">
               <form action="" autocomplete="off" method="POST">

@@ -46,6 +46,7 @@ class Project(models.Model):
 
     project_id = HashidAutoField(min_length=8,primary_key=True,alphabet="0123456789abcdefghijklmnopqrstuvwxyz",salt="drop the gun and go to steam bathc")
     project_title = models.CharField(max_length=200,blank=False)
+    project_bugs = models.BooleanField(default=False)
     framework_used = models.ManyToManyField(Framework,blank=True)
     language_used = models.ManyToManyField(Language,blank=True)
     containerization_used = models.ManyToManyField(Containerization,blank=True)
